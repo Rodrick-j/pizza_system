@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto - PizzaDelivery</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .product-image-gallery {
+            display: grid;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: var(--border-radius-lg);
+            cursor: zoom-in;
+        }
+
+        .thumbnail-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 0.5rem;
+        }
+
+        .thumbnail {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: var(--border-radius-md);
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: all var(--transition-base);
+        }
+
+        .thumbnail:hover,
+        .thumbnail.active {
+            border-color: var(--primary);
+        }
+
+        .customization-option {
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 1rem;
+            margin-bottom: 1rem;
+            transition: all var(--transition-base);
+        }
+
+        .customization-option label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            margin: 0;
+        }
+
+        .customization-option input[type="checkbox"]:checked~label,
+        .customization-option input[type="radio"]:checked~label {
+            font-weight: 600;
+        }
+
+        .customization-option:has(input:checked) {
+            border-color: var(--primary);
+            background: rgba(255, 107, 53, 0.05);
+        }
+
+        .price-badge {
+            background: var(--primary);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: var(--border-radius-sm);
+            font-size: 0.875rem;
+            font-weight: 600;
+        }
+
+        .size-selector {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .size-option {
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all var(--transition-base);
+        }
+
+        .size-option:hover {
+            border-color: var(--primary);
+        }
+
+        .size-option.active {
+            border-color: var(--primary);
+            background: rgba(255, 107, 53, 0.1);
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius-md);
+            padding: 0.5rem;
+            width: fit-content;
+        }
+
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: var(--bg-secondary);
+            border-radius: var(--border-radius-sm);
+            font-size: 1.25rem;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+        }
+
+        .quantity-btn:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        .quantity-value {
+            min-width: 40px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="navbar-brand">
+                    <span style="font-size: 2rem;">🍕</span>
+                    <span>PizzaDelivery</span>
+                </a>
+                <ul class="navbar-menu" id="navbarMenu">
+                    <li><a href="menu.html" class="navbar-link">Menú</a></li>
+                    <li><a href="promociones.html" class="navbar-link">Promociones</a></li>
+                    <li><a href="recompensas.html" class="navbar-link">Recompensas</a></li>
+                    <li class="navbar-cart">
+                        <a href="carrito.html" class="navbar-link">
+                            🛒 Carrito
+                            <span class="cart-badge" id="cartCount">0</span>
+                        </a>
+                    </li>
+                </ul>
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                    <div class="theme-toggle">
+                        <input type="checkbox" id="theme-switch">
+                        <label for="theme-switch"></label>
+                    </div>
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- MAIN -->
+    <main style="padding: 2rem 0; min-height: 80vh;">
+        <div class="container">
+            <!-- Breadcrumb -->
+            <div style="margin-bottom: 1.5rem; font-size: 0.875rem;">
+                <a href="index.html" style="color: var(--text-muted);">Inicio</a>
+                <span style="margin: 0 0.5rem; color: var(--text-muted);">/</span>
+                <a href="menu.html" style="color: var(--text-muted);">Menú</a>
+                <span style="margin: 0 0.5rem; color: var(--text-muted);">/</span>
+                <span id="breadcrumbProduct">Pizza Margarita</span>
+            </div>
+
+            <div class="grid grid-cols-2" style="align-items: start; gap: 3rem;">
+                <!-- LEFT: Images -->
+                <div>
+                    <div class="product-image-gallery">
+                        <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800"
+                            alt="Pizza Margarita" class="main-image" id="mainImage">
+
+                        <div class="thumbnail-gallery">
+                            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=200"
+                                class="thumbnail active" onclick="changeImage(this)">
+                            <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=200"
+                                class="thumbnail" onclick="changeImage(this)">
+                            <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=200"
+                                class="thumbnail" onclick="changeImage(this)">
+                            <img src="https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=200"
+                                class="thumbnail" onclick="changeImage(this)">
+                        </div>
+                    </div>
+
+                    <!-- Product Info -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h4>📋 Información Nutricional</h4>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem;">
+                                <div>
+                                    <div style="font-size: 0.875rem; color: var(--text-muted);">Calorías</div>
+                                    <div style="font-weight: 600;">250 kcal</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.875rem; color: var(--text-muted);">Proteínas</div>
+                                    <div style="font-weight: 600;">12g</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.875rem; color: var(--text-muted);">Carbohidratos</div>
+                                    <div style="font-weight: 600;">30g</div>
+                                </div>
+                                <div>
+                                    <div style="font-size: 0.875rem; color: var(--text-muted);">Grasas</div>
+                                    <div style="font-weight: 600;">10g</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Product Details & Customization -->
+                <div>
+                    <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem;">
+                        <span class="badge badge-success">Más Vendido</span>
+                        <div style="display: flex; align-items: center; gap: 0.25rem;">
+                            <span style="color: var(--accent);">⭐⭐⭐⭐⭐</span>
+                            <span style="font-size: 0.875rem; color: var(--text-muted);">(234 reseñas)</span>
+                        </div>
+                    </div>
+
+                    <h1 id="productName">Pizza Margarita</h1>
+                    <p style="font-size: 1.125rem; color: var(--text-secondary); margin-bottom: 1.5rem;"
+                        id="productDescription">
+                        Deliciosa pizza con salsa de tomate fresco, mozzarella de búfala y albahaca italiana.
+                        Preparada en horno de piedra con los mejores ingredientes.
+                    </p>
+
+                    <!-- Price -->
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary); margin-bottom: 2rem;">
+                        <span id="displayPrice">RD$ 750</span>
+                        <span
+                            style="font-size: 1rem; color: var(--text-muted); text-decoration: line-through; margin-left: 1rem;"
+                            id="oldPrice"></span>
+                    </div>
+
+                    <!-- SIZE SELECTION -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Tamaño</h3>
+                        <div class="size-selector">
+                            <div class="size-option" onclick="selectSize('small', 750, this)">
+                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🍕</div>
+                                <div style="font-weight: 600;">Personal</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">8 pulgadas</div>
+                                <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 750</div>
+                            </div>
+                            <div class="size-option active" onclick="selectSize('medium', 950, this)">
+                                <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🍕</div>
+                                <div style="font-weight: 600;">Mediana</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">12 pulgadas</div>
+                                <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 950</div>
+                            </div>
+                            <div class="size-option" onclick="selectSize('large', 1200, this)">
+                                <div style="font-size: 3rem; margin-bottom: 0.5rem;">🍕</div>
+                                <div style="font-weight: 600;">Grande</div>
+                                <div style="font-size: 0.875rem; color: var(--text-muted);">16 pulgadas</div>
+                                <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 1,200
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MASA SELECTION -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Tipo de Masa</h3>
+                        <div class="customization-option">
+                            <input type="radio" name="masa" id="masa-tradicional" value="tradicional" checked
+                                onchange="updatePrice()">
+                            <label for="masa-tradicional">
+                                <span>Tradicional</span>
+                                <span class="price-badge">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="radio" name="masa" id="masa-delgada" value="delgada" onchange="updatePrice()">
+                            <label for="masa-delgada">
+                                <span>Masa Delgada</span>
+                                <span class="price-badge">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="radio" name="masa" id="masa-gruesa" value="gruesa" onchange="updatePrice()">
+                            <label for="masa-gruesa">
+                                <span>Masa Gruesa (Estilo Chicago)</span>
+                                <span class="price-badge">+ RD$ 80</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="radio" name="masa" id="masa-integral" value="integral"
+                                onchange="updatePrice()">
+                            <label for="masa-integral">
+                                <span>Integral (Saludable)</span>
+                                <span class="price-badge">+ RD$ 100</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- EXTRA TOPPINGS -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Ingredientes Extra</h3>
+                        <div class="customization-option">
+                            <input type="checkbox" id="extra-queso" value="queso" onchange="updatePrice()">
+                            <label for="extra-queso">
+                                <span>🧀 Queso Extra</span>
+                                <span class="price-badge">+ RD$ 120</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="checkbox" id="extra-pepperoni" value="pepperoni" onchange="updatePrice()">
+                            <label for="extra-pepperoni">
+                                <span>🍖 Pepperoni</span>
+                                <span class="price-badge">+ RD$ 150</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="checkbox" id="extra-champinones" value="champinones" onchange="updatePrice()">
+                            <label for="extra-champinones">
+                                <span>🍄 Champiñones</span>
+                                <span class="price-badge">+ RD$ 100</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="checkbox" id="extra-aceitunas" value="aceitunas" onchange="updatePrice()">
+                            <label for="extra-aceitunas">
+                                <span>🫒 Aceitunas Negras</span>
+                                <span class="price-badge">+ RD$ 80</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="checkbox" id="extra-pimientos" value="pimientos" onchange="updatePrice()">
+                            <label for="extra-pimientos">
+                                <span>🫑 Pimientos</span>
+                                <span class="price-badge">+ RD$ 90</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="checkbox" id="extra-jamon" value="jamon" onchange="updatePrice()">
+                            <label for="extra-jamon">
+                                <span>🥓 Jamón</span>
+                                <span class="price-badge">+ RD$ 130</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- BORDE -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Borde de la Pizza</h3>
+                        <div class="customization-option">
+                            <input type="radio" name="borde" id="borde-normal" value="normal" checked
+                                onchange="updatePrice()">
+                            <label for="borde-normal">
+                                <span>Normal</span>
+                                <span class="price-badge">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="radio" name="borde" id="borde-queso" value="queso" onchange="updatePrice()">
+                            <label for="borde-queso">
+                                <span>Borde Relleno de Queso</span>
+                                <span class="price-badge">+ RD$ 180</span>
+                            </label>
+                        </div>
+                        <div class="customization-option">
+                            <input type="radio" name="borde" id="borde-ajo" value="ajo" onchange="updatePrice()">
+                            <label for="borde-ajo">
+                                <span>Borde con Ajo y Hierbas</span>
+                                <span class="price-badge">+ RD$ 60</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- QUANTITY -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Cantidad</h3>
+                        <div class="quantity-selector">
+                            <button class="quantity-btn" onclick="changeQuantity(-1)">−</button>
+                            <span class="quantity-value" id="quantity">1</span>
+                            <button class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                        </div>
+                    </div>
+
+                    <!-- SPECIAL INSTRUCTIONS -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="margin-bottom: 1rem;">Instrucciones Especiales (Opcional)</h3>
+                        <textarea class="form-control" id="specialInstructions" rows="3"
+                            placeholder="Ej: Sin cebolla, bien cocida, etc."></textarea>
+                    </div>
+
+                    <!-- ADD TO CART -->
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <button class="btn btn-primary btn-lg" style="flex: 1;" onclick="addToCart()">
+                            🛒 Agregar al Carrito - <span id="totalPrice">RD$ 950</span>
+                        </button>
+                        <button class="btn btn-outline btn-lg" onclick="addToFavorites()">
+                            ❤️
+                        </button>
+                    </div>
+
+                    <div
+                        style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; font-size: 0.875rem; color: var(--text-muted);">
+                        <div>🚚 Entrega en 30-40 min</div>
+                        <div>❄️ Se mantiene caliente</div>
+                        <div>✅ Preparado al ordenar</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RELATED PRODUCTS -->
+            <div style="margin-top: 4rem;">
+                <h2 style="margin-bottom: 1.5rem;">También te puede gustar</h2>
+                <div class="grid grid-cols-4">
+                    <!-- Los productos relacionados se cargarían aquí -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer style="background: var(--bg-tertiary); padding: 2rem 0; margin-top: 3rem;">
+        <div class="container text-center">
+            <p>&copy; 2024 PizzaDelivery. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        let basePrice = 950;
+        let currentSize = 'medium';
+        let quantity = 1;
+
+        const prices = {
+            sizes: {
+                small: 750,
+                medium: 950,
+                large: 1200
+            },
+            masa: {
+                tradicional: 0,
+                delgada: 0,
+                gruesa: 80,
+                integral: 100
+            },
+            extras: {
+                queso: 120,
+                pepperoni: 150,
+                champinones: 100,
+                aceitunas: 80,
+                pimientos: 90,
+                jamon: 130
+            },
+            borde: {
+                normal: 0,
+                queso: 180,
+                ajo: 60
+            }
+        };
+
+        function selectSize(size, price, element) {
+            currentSize = size;
+            basePrice = price;
+
+            // Update active state
+            document.querySelectorAll('.size-option').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+
+            updatePrice();
+        }
+
+        function updatePrice() {
+            let total = basePrice;
+
+            // Add masa price
+            const masa = document.querySelector('input[name="masa"]:checked').value;
+            total += prices.masa[masa];
+
+            // Add extras
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                const extra = checkbox.value;
+                if (prices.extras[extra]) {
+                    total += prices.extras[extra];
+                }
+            });
+
+            // Add borde price
+            const borde = document.querySelector('input[name="borde"]:checked').value;
+            total += prices.borde[borde];
+
+            // Update display
+            const finalTotal = total * quantity;
+            document.getElementById('displayPrice').textContent = formatCurrency(total);
+            document.getElementById('totalPrice').textContent = formatCurrency(finalTotal);
+        }
+
+        function changeQuantity(delta) {
+            quantity = Math.max(1, quantity + delta);
+            document.getElementById('quantity').textContent = quantity;
+            updatePrice();
+        }
+
+        function changeImage(thumbnail) {
+            const mainImage = document.getElementById('mainImage');
+            const newSrc = thumbnail.src.replace('w=200', 'w=800');
+            mainImage.src = newSrc;
+
+            // Update active thumbnail
+            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
+            thumbnail.classList.add('active');
+        }
+
+        function addToCart() {
+            // Gather customizations
+            const customizations = {
+                size: currentSize,
+                masa: document.querySelector('input[name="masa"]:checked').value,
+                borde: document.querySelector('input[name="borde"]:checked').value,
+                extras: [],
+                instructions: document.getElementById('specialInstructions').value
+            };
+
+            // Get selected extras
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                customizations.extras.push(checkbox.value);
+            });
+
+            // Calculate final price
+            let finalPrice = basePrice;
+            finalPrice += prices.masa[customizations.masa];
+            finalPrice += prices.borde[customizations.borde];
+            customizations.extras.forEach(extra => {
+                finalPrice += prices.extras[extra];
+            });
+
+            const product = {
+                id: 1,
+                name: document.getElementById('productName').textContent,
+                description: document.getElementById('productDescription').textContent,
+                price: finalPrice,
+                image: document.getElementById('mainImage').src,
+                customizations: customizations
+            };
+
+            if (window.cart) {
+                window.cart.addItem(product, quantity, customizations);
+
+                // Show success message
+                setTimeout(() => {
+                    if (confirm('✅ Producto agregado al carrito. ¿Ir al carrito?')) {
+                        window.location.href = 'carrito.html';
+                    }
+                }, 500);
+            }
+        }
+
+        function addToFavorites() {
+            showToast('❤️ Agregado a favoritos');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            updatePrice();
+        });
+    </script>
+</body>
+
+</html>

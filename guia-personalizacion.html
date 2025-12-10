@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía de Personalización - PizzaDelivery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .guide-card {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 2rem;
+            border-radius: var(--border-radius-lg);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .step-card {
+            display: flex;
+            align-items: start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            background: var(--bg-card);
+            border-radius: var(--border-radius-md);
+            border: 2px solid var(--border-color);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="navbar-brand">
+                    <span style="font-size: 2rem;">🍕</span>
+                    <span>PizzaDelivery</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+
+    <main style="padding: 2rem 0;">
+        <div class="container" style="max-width: 800px;">
+            <div class="guide-card">
+                <h1 style="color: white; margin-bottom: 1rem;">🎨 Cómo Personalizar tu Pedido</h1>
+                <p style="font-size: 1.125rem; opacity: 0.95;">Sigue estos pasos para crear tu producto perfecto</p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div>
+                    <h3>Haz clic en el Producto</h3>
+                    <p style="color: var(--text-secondary);">
+                        En el menú, haz clic en la <strong>imagen del producto</strong> o en el <strong>título</strong>
+                        para ver todos los detalles y opciones de personalización.
+                    </p>
+                    <div
+                        style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: var(--border-radius-sm);">
+                        💡 <strong>Tip:</strong> También puedes hacer clic en el botón "Personalizar"
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div>
+                    <h3>Elige el Tamaño</h3>
+                    <p style="color: var(--text-secondary);">
+                        Selecciona entre <strong>Personal</strong> (8"), <strong>Mediana</strong> (12")
+                        o <strong>Grande</strong> (16"). El precio cambia según el tamaño.
+                    </p>
+                    <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <span>🍕 Personal - RD$ 750</span>
+                        <span>🍕 Mediana - RD$ 950</span>
+                        <span>🍕 Grande - RD$ 1,200</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div>
+                    <h3>Selecciona el Tipo de Masa</h3>
+                    <p style="color: var(--text-secondary);">
+                        Elige entre <strong>Tradicional</strong>, <strong>Delgada</strong>,
+                        <strong>Gruesa</strong> (+RD$ 80), o <strong>Integral</strong> (+RD$ 100).
+                    </p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">4</div>
+                <div>
+                    <h3>Agrega Ingredientes Extra</h3>
+                    <p style="color: var(--text-secondary);">
+                        Personaliza con tus favoritos: Queso Extra, Pepperoni, Champiñones,
+                        Aceitunas, Pimientos, Jamón. Cada uno tiene un costo adicional.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">5</div>
+                <div>
+                    <h3>Elige el Borde</h3>
+                    <p style="color: var(--text-secondary);">
+                        Selecciona <strong>Normal</strong>, <strong>Relleno de Queso</strong> (+RD$ 180),
+                        o <strong>con Ajo y Hierbas</strong> (+RD$ 60).
+                    </p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">6</div>
+                <div>
+                    <h3>Ajusta la Cantidad</h3>
+                    <p style="color: var(--text-secondary);">
+                        Usa los botones <strong>- y +</strong> para elegir cuántos quieres.
+                    </p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">7</div>
+                <div>
+                    <h3>Agrega Instrucciones (Opcional)</h3>
+                    <p style="color: var(--text-secondary);">
+                        ¿Alguna preferencia especial? Escríbela en el campo de instrucciones
+                        (ej: "Sin cebolla", "Bien cocida", etc.)
+                    </p>
+                </div>
+            </div>
+
+            <div class="step-card">
+                <div class="step-number">8</div>
+                <div>
+                    <h3>Agregar al Carrito</h3>
+                    <p style="color: var(--text-secondary);">
+                        El botón mostrará el <strong>precio total</strong> con todas tus personalizaciones.
+                        Haz clic en "🛒 Agregar al Carrito" para añadirlo.
+                    </p>
+                    <div
+                        style="margin-top: 1rem; padding: 1rem; background: var(--success); color: white; border-radius: var(--border-radius-sm);">
+                        ✅ ¡Listo! Tu producto personalizado está en el carrito
+                    </div>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="menu.html" class="btn btn-primary btn-lg">Empezar a Personalizar</a>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
