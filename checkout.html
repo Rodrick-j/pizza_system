@@ -1,605 +1,852 @@
 <!DOCTYPE html>
 <html lang="es">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Checkout - PizzaDelivery</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
     <style>
-        .checkout-steps {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 2rem;
-            position: relative;
-        }
+      .checkout-steps {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2rem;
+        position: relative;
+      }
 
-        .checkout-steps::before {
-            content: '';
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--border-color);
-            z-index: 0;
+      .checkout-steps::before {
+        content: "";
+        position: absolute;
+        top: 20px;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: var(--border-color);
+        z-index: 0;
+      }
+
+      .step {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+        z-index: 1;
+        flex: 1;
+      }
+
+      .step-number {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: var(--bg-card);
+        border: 2px solid var(--border-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+      }
+
+      .step.active .step-number {
+        background: var(--primary);
+        color: white;
+        border-color: var(--primary);
+      }
+
+      .step.completed .step-number {
+        background: var(--success);
+        color: white;
+        border-color: var(--success);
+      }
+
+      .checkout-section {
+        background: var(--bg-card);
+        border-radius: var(--border-radius-lg);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        box-shadow: var(--shadow-md);
+      }
+
+      .payment-methods {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .payment-method {
+        border: 2px solid var(--border-color);
+        border-radius: var(--border-radius-md);
+        padding: 1rem;
+        cursor: pointer;
+        text-align: center;
+        transition: all var(--transition-base);
+      }
+
+      .payment-method:hover {
+        border-color: var(--primary);
+      }
+
+      .payment-method.active {
+        border-color: var(--primary);
+        background: rgba(255, 107, 53, 0.1);
+      }
+
+      .card-input-group {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 1rem;
+      }
+
+      @media (max-width: 768px) {
+        .checkout-steps {
+          flex-wrap: wrap;
         }
 
         .step {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            position: relative;
-            z-index: 1;
-            flex: 1;
-        }
-
-        .step-number {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 2px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-bottom: 0.5rem;
-        }
-
-        .step.active .step-number {
-            background: var(--primary);
-            color: white;
-            border-color: var(--primary);
-        }
-
-        .step.completed .step-number {
-            background: var(--success);
-            color: white;
-            border-color: var(--success);
-        }
-
-        .checkout-section {
-            background: var(--bg-card);
-            border-radius: var(--border-radius-lg);
-            padding: 2rem;
-            margin-bottom: 1.5rem;
-            box-shadow: var(--shadow-md);
-        }
-
-        .payment-methods {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .payment-method {
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius-md);
-            padding: 1rem;
-            cursor: pointer;
-            text-align: center;
-            transition: all var(--transition-base);
-        }
-
-        .payment-method:hover {
-            border-color: var(--primary);
-        }
-
-        .payment-method.active {
-            border-color: var(--primary);
-            background: rgba(255, 107, 53, 0.1);
+          margin-bottom: 1rem;
         }
 
         .card-input-group {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr;
-            gap: 1rem;
+          grid-template-columns: 1fr;
         }
-
-        @media (max-width: 768px) {
-            .checkout-steps {
-                flex-wrap: wrap;
-            }
-
-            .step {
-                margin-bottom: 1rem;
-            }
-
-            .card-input-group {
-                grid-template-columns: 1fr;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- HEADER -->
     <header class="header">
-        <div class="container">
-            <nav class="navbar">
-                <a href="index.html" class="navbar-brand">
-                    <span style="font-size: 2rem;">🍕</span>
-                    <span>PizzaDelivery</span>
-                </a>
-                <div style="display: flex; align-items: center; gap: 1rem;">
-                    <div class="theme-toggle">
-                        <input type="checkbox" id="theme-switch">
-                        <label for="theme-switch"></label>
-                    </div>
-                </div>
-            </nav>
-        </div>
+      <div class="container">
+        <nav class="navbar">
+          <a href="index.html" class="navbar-brand">
+            <span style="font-size: 2rem">🍕</span>
+            <span>PizzaDelivery</span>
+          </a>
+          <div style="display: flex; align-items: center; gap: 1rem">
+            <div class="theme-toggle">
+              <input type="checkbox" id="theme-switch" />
+              <label for="theme-switch"></label>
+            </div>
+          </div>
+        </nav>
+      </div>
     </header>
 
     <!-- MAIN -->
-    <main style="padding: 2rem 0; min-height: 80vh;">
-        <div class="container">
-            <h1 style="margin-bottom: 2rem;">💳 Finalizar Pedido</h1>
+    <main style="padding: 2rem 0; min-height: 80vh">
+      <div class="container">
+        <h1 style="margin-bottom: 2rem">💳 Finalizar Pedido</h1>
 
-            <!-- Progress Steps -->
-            <div class="checkout-steps">
-                <div class="step completed">
-                    <div class="step-number">✓</div>
-                    <span style="font-size: 0.875rem;">Carrito</span>
-                </div>
-                <div class="step active">
-                    <div class="step-number">2</div>
-                    <span style="font-size: 0.875rem;">Datos</span>
-                </div>
-                <div class="step">
-                    <div class="step-number">3</div>
-                    <span style="font-size: 0.875rem;">Pago</span>
-                </div>
-                <div class="step">
-                    <div class="step-number">4</div>
-                    <span style="font-size: 0.875rem;">Confirmación</span>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-3" style="align-items: start;">
-                <!-- LEFT COLUMN - Forms -->
-                <div style="grid-column: span 2;">
-                    <!-- DELIVERY ADDRESS -->
-                    <div class="checkout-section">
-                        <h3 style="margin-bottom: 1.5rem;">📍 Dirección de Entrega</h3>
-
-                        <div class="form-group">
-                            <label class="form-label">Dirección Completa *</label>
-                            <input type="text" class="form-control" id="deliveryAddress"
-                                placeholder="Calle 123 #45-67, Apto 301" required>
-                        </div>
-
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <div class="form-group">
-                                <label class="form-label">Ciudad *</label>
-                                <input type="text" class="form-control" id="city" value="Bogotá" required>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Código Postal</label>
-                                <input type="text" class="form-control" id="postalCode" placeholder="110111">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label class="form-label">Instrucciones de Entrega (Opcional)</label>
-                            <textarea class="form-control" id="deliveryInstructions" rows="3"
-                                placeholder="Ej: Tocar el timbre 2 veces, edificio azul"></textarea>
-                        </div>
-                    </div>
-
-                    <!-- DELIVERY TIME -->
-                    <div class="checkout-section">
-                        <h3 style="margin-bottom: 1.5rem;">🕐 Horario de Entrega</h3>
-
-                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                            <label
-                                style="border: 2px solid var(--border-color); border-radius: var(--border-radius-md); padding: 1rem; cursor: pointer; transition: all var(--transition-base);">
-                                <input type="radio" name="deliveryTime" value="asap" checked
-                                    onchange="toggleDeliveryTime(this)">
-                                <div style="margin-top: 0.5rem;">
-                                    <strong>Lo más pronto posible</strong>
-                                    <div style="font-size: 0.875rem; color: var(--text-muted);">30-40 minutos</div>
-                                </div>
-                            </label>
-
-                            <label
-                                style="border: 2px solid var(--border-color); border-radius: var(--border-radius-md); padding: 1rem; cursor: pointer; transition: all var(--transition-base);">
-                                <input type="radio" name="deliveryTime" value="scheduled"
-                                    onchange="toggleDeliveryTime(this)">
-                                <div style="margin-top: 0.5rem;">
-                                    <strong>Programar entrega</strong>
-                                    <div style="font-size: 0.875rem; color: var(--text-muted);">Elige fecha y hora</div>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div id="scheduledTimeFields" style="display: none; margin-top: 1rem;">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
-                                <div class="form-group">
-                                    <label class="form-label">Fecha</label>
-                                    <input type="date" class="form-control" id="scheduledDate">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Hora</label>
-                                    <input type="time" class="form-control" id="scheduledTime">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- PAYMENT METHOD -->
-                    <div class="checkout-section">
-                        <h3 style="margin-bottom: 1.5rem;">💳 Método de Pago</h3>
-
-                        <div class="payment-methods">
-                            <div class="payment-method active" onclick="selectPaymentMethod('card', this)">
-                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">💳</div>
-                                <div style="font-weight: 600;">Tarjeta</div>
-                            </div>
-                            <div class="payment-method" onclick="selectPaymentMethod('cash', this)">
-                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">💵</div>
-                                <div style="font-weight: 600;">Efectivo</div>
-                            </div>
-                            <div class="payment-method" onclick="selectPaymentMethod('pse', this)">
-                                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏦</div>
-                                <div style="font-weight: 600;">PSE</div>
-                            </div>
-                        </div>
-
-                        <!-- CARD FORM -->
-                        <div id="cardPaymentForm">
-                            <div class="form-group">
-                                <label class="form-label">Número de Tarjeta *</label>
-                                <input type="text" class="form-control" id="cardNumber"
-                                    placeholder="1234 5678 9012 3456" maxlength="19" oninput="formatCardNumber(this)"
-                                    required>
-                                <div id="cardType"
-                                    style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);"></div>
-                            </div>
-
-                            <div class="form-group">
-                                <label class="form-label">Nombre en la Tarjeta *</label>
-                                <input type="text" class="form-control" id="cardName" placeholder="JUAN PÉREZ"
-                                    style="text-transform: uppercase;" required>
-                            </div>
-
-                            <div class="card-input-group">
-                                <div class="form-group">
-                                    <label class="form-label">Fecha de Vencimiento *</label>
-                                    <input type="text" class="form-control" id="cardExpiry" placeholder="MM/AA"
-                                        maxlength="5" oninput="formatExpiry(this)" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">CVV *</label>
-                                    <input type="text" class="form-control" id="cardCVV" placeholder="123" maxlength="4"
-                                        oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Cuotas</label>
-                                    <select class="form-control" id="installments">
-                                        <option value="1">1 cuota</option>
-                                        <option value="3">3 cuotas</option>
-                                        <option value="6">6 cuotas</option>
-                                        <option value="12">12 cuotas</option>
-                                    </select>
-                                </div>
-                            </div>
-
-                            <div style="display: flex; align-items: center; gap: 0.5rem; margin-top: 1rem;">
-                                <input type="checkbox" id="saveCard">
-                                <label for="saveCard" style="margin: 0; cursor: pointer;">Guardar tarjeta para futuras
-                                    compras</label>
-                            </div>
-
-                            <div
-                                style="margin-top: 1rem; padding: 1rem; background: var(--bg-secondary); border-radius: var(--border-radius-md); font-size: 0.875rem;">
-                                🔒 Tu información está segura y encriptada
-                            </div>
-                        </div>
-
-                        <!-- CASH FORM -->
-                        <div id="cashPaymentForm" style="display: none;">
-                            <div class="form-group">
-                                <label class="form-label">¿Con cuánto vas a pagar? (Opcional)</label>
-                                <input type="number" class="form-control" id="cashAmount" placeholder="Ej: 100000">
-                                <div style="margin-top: 0.5rem; font-size: 0.875rem; color: var(--text-muted);">
-                                    Total a pagar: <span id="totalCash">$0</span>
-                                </div>
-                            </div>
-                            <div
-                                style="padding: 1rem; background: var(--bg-secondary); border-radius: var(--border-radius-md); font-size: 0.875rem;">
-                                💵 Paga en efectivo al recibir tu pedido
-                            </div>
-                        </div>
-
-                        <!-- PSE FORM -->
-                        <div id="psePaymentForm" style="display: none;">
-                            <div class="form-group">
-                                <label class="form-label">Banco *</label>
-                                <select class="form-control" id="bank">
-                                    <option value="">Selecciona tu banco</option>
-                                    <option value="bancolombia">Bancolombia</option>
-                                    <option value="davivienda">Davivienda</option>
-                                    <option value="bbva">BBVA</option>
-                                    <option value="bancobogota">Banco de Bogotá</option>
-                                    <option value="otros">Otros</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label class="form-label">Tipo de Persona *</label>
-                                <select class="form-control" id="personType">
-                                    <option value="natural">Persona Natural</option>
-                                    <option value="juridica">Persona Jurídica</option>
-                                </select>
-                            </div>
-                            <div
-                                style="padding: 1rem; background: var(--bg-secondary); border-radius: var(--border-radius-md); font-size: 0.875rem;">
-                                🏦 Serás redirigido a tu banco para completar el pago
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- TIP -->
-                    <div class="checkout-section">
-                        <h3 style="margin-bottom: 1.5rem;">💰 Propina para el Repartidor (Opcional)</h3>
-
-                        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem;">
-                            <button class="btn btn-outline" onclick="selectTip(0, this)">No gracias</button>
-                            <button class="btn btn-outline" onclick="selectTip(2000, this)">$2,000</button>
-                            <button class="btn btn-outline" onclick="selectTip(5000, this)">$5,000</button>
-                            <button class="btn btn-outline" onclick="selectTip(10000, this)">$10,000</button>
-                        </div>
-
-                        <div class="form-group" style="margin-top: 1rem;">
-                            <label class="form-label">Otra cantidad</label>
-                            <input type="number" class="form-control" id="customTip" placeholder="Ingresa el monto"
-                                onchange="updateTip(this.value)">
-                        </div>
-                    </div>
-                </div>
-
-                <!-- RIGHT COLUMN - Order Summary -->
-                <div class="checkout-section" style="position: sticky; top: 90px;">
-                    <h3 style="margin-bottom: 1.5rem;">📋 Resumen del Pedido</h3>
-
-                    <div id="orderItems" style="margin-bottom: 1.5rem;">
-                        <!-- Items del carrito -->
-                    </div>
-
-                    <hr style="border-color: var(--border-color); margin: 1.5rem 0;">
-
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>Subtotal:</span>
-                        <span id="summarySubtotal">$0</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>Envío:</span>
-                        <span id="summaryShipping">$5,000</span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
-                        <span>Propina:</span>
-                        <span id="summaryTip">$0</span>
-                    </div>
-                    <div
-                        style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: var(--success);">
-                        <span>Descuento:</span>
-                        <span id="summaryDiscount">$0</span>
-                    </div>
-
-                    <hr style="border-color: var(--border-color); margin: 1.5rem 0;">
-
-                    <div
-                        style="display: flex; justify-content: space-between; font-size: 1.25rem; font-weight: bold; margin-bottom: 1.5rem;">
-                        <span>Total:</span>
-                        <span id="summaryTotal" style="color: var(--primary);">$0</span>
-                    </div>
-
-                    <button class="btn btn-primary btn-lg" style="width: 100%;" onclick="processPayment()">
-                        Realizar Pedido
-                    </button>
-
-                    <div style="text-align: center; margin-top: 1rem;">
-                        <a href="carrito.html" style="font-size: 0.875rem;">← Volver al carrito</a>
-                    </div>
-                </div>
-            </div>
+        <!-- Progress Steps -->
+        <div class="checkout-steps">
+          <div class="step completed">
+            <div class="step-number">✓</div>
+            <span style="font-size: 0.875rem">Carrito</span>
+          </div>
+          <div class="step active">
+            <div class="step-number">2</div>
+            <span style="font-size: 0.875rem">Datos</span>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <span style="font-size: 0.875rem">Pago</span>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <span style="font-size: 0.875rem">Confirmación</span>
+          </div>
         </div>
+
+        <div class="grid grid-cols-3" style="align-items: start">
+          <!-- LEFT COLUMN - Forms -->
+          <div style="grid-column: span 2">
+            <!-- DELIVERY ADDRESS -->
+            <div class="checkout-section">
+              <h3 style="margin-bottom: 1.5rem">📍 Dirección de Entrega</h3>
+
+              <div class="form-group">
+                <label class="form-label">Dirección Completa *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="deliveryAddress"
+                  placeholder="Calle 123 #45-67, Apto 301"
+                  required
+                />
+              </div>
+
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem"
+              >
+                <div class="form-group">
+                  <label class="form-label">Ciudad</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="city"
+                    value="Monte Plata"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label class="form-label">Municipio</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="city"
+                    value="Bayaguana"
+                    required
+                  />
+                </div>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label"
+                  >Instrucciones de Entrega (Opcional)</label
+                >
+                <textarea
+                  class="form-control"
+                  id="deliveryInstructions"
+                  rows="3"
+                  placeholder="Ej: Tocar el timbre 2 veces, edificio azul"
+                ></textarea>
+              </div>
+            </div>
+
+            <!-- DELIVERY TIME -->
+            <div class="checkout-section">
+              <h3 style="margin-bottom: 1.5rem">🕐 Horario de Entrega</h3>
+
+              <div
+                style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem"
+              >
+                <label
+                  style="
+                    border: 2px solid var(--border-color);
+                    border-radius: var(--border-radius-md);
+                    padding: 1rem;
+                    cursor: pointer;
+                    transition: all var(--transition-base);
+                  "
+                >
+                  <input
+                    type="radio"
+                    name="deliveryTime"
+                    value="asap"
+                    checked
+                    onchange="toggleDeliveryTime(this)"
+                  />
+                  <div style="margin-top: 0.5rem">
+                    <strong>Lo más pronto posible</strong>
+                    <div style="font-size: 0.875rem; color: var(--text-muted)">
+                      10-40 minutos
+                    </div>
+                  </div>
+                </label>
+
+                <label
+                  style="
+                    border: 2px solid var(--border-color);
+                    border-radius: var(--border-radius-md);
+                    padding: 1rem;
+                    cursor: pointer;
+                    transition: all var(--transition-base);
+                  "
+                >
+                  <input
+                    type="radio"
+                    name="deliveryTime"
+                    value="scheduled"
+                    onchange="toggleDeliveryTime(this)"
+                  />
+                  <div style="margin-top: 0.5rem">
+                    <strong>Programar entrega</strong>
+                    <div style="font-size: 0.875rem; color: var(--text-muted)">
+                      Elige fecha y hora
+                    </div>
+                  </div>
+                </label>
+              </div>
+
+              <div
+                id="scheduledTimeFields"
+                style="display: none; margin-top: 1rem"
+              >
+                <div
+                  style="
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                  "
+                >
+                  <div class="form-group">
+                    <label class="form-label">Fecha</label>
+                    <input
+                      type="date"
+                      class="form-control"
+                      id="scheduledDate"
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Hora</label>
+                    <input
+                      type="time"
+                      class="form-control"
+                      id="scheduledTime"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- PAYMENT METHOD -->
+            <div class="checkout-section">
+              <h3 style="margin-bottom: 1.5rem">💳 Método de Pago</h3>
+
+              <div class="payment-methods">
+                <div
+                  class="payment-method active"
+                  onclick="selectPaymentMethod('card', this)"
+                >
+                  <div style="font-size: 2rem; margin-bottom: 0.5rem">💳</div>
+                  <div style="font-weight: 600">Tarjeta</div>
+                </div>
+                <div
+                  class="payment-method"
+                  onclick="selectPaymentMethod('cash', this)"
+                >
+                  <div style="font-size: 2rem; margin-bottom: 0.5rem">💵</div>
+                  <div style="font-weight: 600">Efectivo</div>
+                </div>
+                <div
+                  class="payment-method"
+                  onclick="selectPaymentMethod('pse', this)"
+                >
+                  <div style="font-size: 2rem; margin-bottom: 0.5rem">🏦</div>
+                  <div style="font-weight: 600">Transferencia Bancaria</div>
+                </div>
+              </div>
+
+              <!-- CARD FORM -->
+              <div id="cardPaymentForm">
+                <div class="form-group">
+                  <label class="form-label">Número de Tarjeta *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cardNumber"
+                    placeholder="1234 5678 9012 3456"
+                    maxlength="19"
+                    oninput="formatCardNumber(this)"
+                    required
+                  />
+                  <div
+                    id="cardType"
+                    style="
+                      margin-top: 0.5rem;
+                      font-size: 0.875rem;
+                      color: var(--text-muted);
+                    "
+                  ></div>
+                </div>
+
+                <div class="form-group">
+                  <label class="form-label">Nombre en la Tarjeta *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="cardName"
+                    placeholder="JUAN PÉREZ"
+                    style="text-transform: uppercase"
+                    required
+                  />
+                </div>
+
+                <div class="card-input-group">
+                  <div class="form-group">
+                    <label class="form-label">Fecha de Vencimiento *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cardExpiry"
+                      placeholder="MM/AA"
+                      maxlength="5"
+                      oninput="formatExpiry(this)"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">CVV *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="cardCVV"
+                      placeholder="123"
+                      maxlength="4"
+                      oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+                      required
+                    />
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label">Cuotas</label>
+                    <select class="form-control" id="installments">
+                      <option value="1">1 cuota</option>
+                      <option value="3">3 cuotas</option>
+                      <option value="6">6 cuotas</option>
+                      <option value="12">12 cuotas</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div
+                  style="
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    margin-top: 1rem;
+                  "
+                >
+                  <input type="checkbox" id="saveCard" />
+                  <label for="saveCard" style="margin: 0; cursor: pointer"
+                    >Guardar tarjeta para futuras compras</label
+                  >
+                </div>
+
+                <div
+                  style="
+                    margin-top: 1rem;
+                    padding: 1rem;
+                    background: var(--bg-secondary);
+                    border-radius: var(--border-radius-md);
+                    font-size: 0.875rem;
+                  "
+                >
+                  🔒 Tu información está segura y encriptada
+                </div>
+              </div>
+
+              <!-- CASH FORM -->
+              <div id="cashPaymentForm" style="display: none">
+                <div class="form-group">
+                  <label class="form-label"
+                    >¿Con cuánto vas a pagar? (Opcional)</label
+                  >
+                  <input
+                    type="number"
+                    class="form-control"
+                    id="cashAmount"
+                    placeholder="Ej: 100000"
+                  />
+                  <div
+                    style="
+                      margin-top: 0.5rem;
+                      font-size: 0.875rem;
+                      color: var(--text-muted);
+                    "
+                  >
+                    Total a pagar: <span id="totalCash">$0</span>
+                  </div>
+                </div>
+                <div
+                  style="
+                    padding: 1rem;
+                    background: var(--bg-secondary);
+                    border-radius: var(--border-radius-md);
+                    font-size: 0.875rem;
+                  "
+                >
+                  💵 Paga en efectivo al recibir tu pedido
+                </div>
+              </div>
+
+              <!-- Transferencia Bancaria FORM -->
+              <!-- TODO: Listado de bancos donde el negocio tiene cuenta abierta para recibir transferencias bancarias y cuando selecciona un banco, debe mostrar el numero de cuenta abajo -->
+              <div id="psePaymentForm" style="display: none">
+                <div class="form-group">
+                  <label class="form-label">Banco *</label>
+                  <select class="form-control" id="bank">
+                    <option value="">Selecciona tu banco</option>
+                    <option value="bancolombia">Bancolombia</option>
+                    <option value="davivienda">Davivienda</option>
+                    <option value="bbva">BBVA</option>
+                    <option value="bancobogota">Banco de Bogotá</option>
+                    <option value="otros">Otros</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <!-- TODO: Mostrar el numero de cuenta del banco seleccionado en la parte de arriba cambiar los inputs por un tag span con el numero de cuenta -->
+                  <label class="form-label">Tipo de Persona *</label>
+                  <select class="form-control" id="personType">
+                    <option value="natural">Persona Natural</option>
+                    <option value="juridica">Persona Jurídica</option>
+                  </select>
+                </div>
+                <div
+                  style="
+                    padding: 1rem;
+                    background: var(--bg-secondary);
+                    border-radius: var(--border-radius-md);
+                    font-size: 0.875rem;
+                  "
+                >
+                  🏦 Serás redirigido a tu banco para completar el pago
+                </div>
+              </div>
+            </div>
+
+            <!-- TIP -->
+            <div class="checkout-section">
+              <h3 style="margin-bottom: 1.5rem">
+                💰 Propina para el Repartidor (Opcional)
+              </h3>
+
+              <div
+                style="
+                  display: grid;
+                  grid-template-columns: repeat(4, 1fr);
+                  gap: 1rem;
+                "
+              >
+                <button class="btn btn-outline" onclick="selectTip(0, this)">
+                  No gracias
+                </button>
+                <button class="btn btn-outline" onclick="selectTip(2000, this)">
+                  $2,000
+                </button>
+                <button class="btn btn-outline" onclick="selectTip(5000, this)">
+                  $5,000
+                </button>
+                <button
+                  class="btn btn-outline"
+                  onclick="selectTip(10000, this)"
+                >
+                  $10,000
+                </button>
+              </div>
+
+              <div class="form-group" style="margin-top: 1rem">
+                <label class="form-label">Otra cantidad</label>
+                <input
+                  type="number"
+                  class="form-control"
+                  id="customTip"
+                  placeholder="Ingresa el monto"
+                  onchange="updateTip(this.value)"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- RIGHT COLUMN - Order Summary -->
+          <div class="checkout-section" style="position: sticky; top: 90px">
+            <h3 style="margin-bottom: 1.5rem">📋 Resumen del Pedido</h3>
+
+            <div id="orderItems" style="margin-bottom: 1.5rem">
+              <!-- Items del carrito -->
+            </div>
+
+            <hr style="border-color: var(--border-color); margin: 1.5rem 0" />
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+              "
+            >
+              <span>Subtotal:</span>
+              <span id="summarySubtotal">$0</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+              "
+            >
+              <span>Envío:</span>
+              <span id="summaryShipping">$5,000</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+              "
+            >
+              <span>Propina:</span>
+              <span id="summaryTip">$0</span>
+            </div>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 0.5rem;
+                color: var(--success);
+              "
+            >
+              <span>Descuento:</span>
+              <span id="summaryDiscount">$0</span>
+            </div>
+
+            <hr style="border-color: var(--border-color); margin: 1.5rem 0" />
+
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+                font-size: 1.25rem;
+                font-weight: bold;
+                margin-bottom: 1.5rem;
+              "
+            >
+              <span>Total:</span>
+              <span id="summaryTotal" style="color: var(--primary)">$0</span>
+            </div>
+
+            <button
+              class="btn btn-primary btn-lg"
+              style="width: 100%"
+              onclick="processPayment()"
+            >
+              Realizar Pedido
+            </button>
+
+            <div style="text-align: center; margin-top: 1rem">
+              <a href="carrito.html" style="font-size: 0.875rem"
+                >← Volver al carrito</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
 
     <script src="app.js"></script>
     <script>
-        let currentPaymentMethod = 'card';
-        let selectedTip = 0;
+      let currentPaymentMethod = "card";
+      let selectedTip = 0;
 
-        // Load order summary
-        function loadOrderSummary() {
-            const items = window.cart ? window.cart.getItemCount() : 0;
-            const subtotal = window.cart ? window.cart.getTotal() : 0;
-            const shipping = subtotal > 50000 ? 0 : 5000;
-            const discount = parseInt(localStorage.getItem('appliedDiscount') || 0);
-            const total = subtotal + shipping + selectedTip - discount;
+      // Load order summary
+      function loadOrderSummary() {
+        const items = window.cart ? window.cart.getItemCount() : 0;
+        const subtotal = window.cart ? window.cart.getTotal() : 0;
+        const shipping = subtotal > 50000 ? 0 : 5000;
+        const discount = parseInt(localStorage.getItem("appliedDiscount") || 0);
+        const total = subtotal + shipping + selectedTip - discount;
 
-            document.getElementById('summarySubtotal').textContent = formatCurrency(subtotal);
-            document.getElementById('summaryShipping').textContent = shipping === 0 ? 'GRATIS' : formatCurrency(shipping);
-            document.getElementById('summaryTip').textContent = formatCurrency(selectedTip);
-            document.getElementById('summaryDiscount').textContent = discount > 0 ? '-' + formatCurrency(discount) : '$0';
-            document.getElementById('summaryTotal').textContent = formatCurrency(total);
-            document.getElementById('totalCash').textContent = formatCurrency(total);
+        document.getElementById("summarySubtotal").textContent =
+          formatCurrency(subtotal);
+        document.getElementById("summaryShipping").textContent =
+          shipping === 0 ? "GRATIS" : formatCurrency(shipping);
+        document.getElementById("summaryTip").textContent =
+          formatCurrency(selectedTip);
+        document.getElementById("summaryDiscount").textContent =
+          discount > 0 ? "-" + formatCurrency(discount) : "$0";
+        document.getElementById("summaryTotal").textContent =
+          formatCurrency(total);
+        document.getElementById("totalCash").textContent =
+          formatCurrency(total);
 
-            // Show cart items
-            if (window.cart && AppState.cart.length > 0) {
-                const itemsHTML = AppState.cart.map(item => `
+        // Show cart items
+        if (window.cart && AppState.cart.length > 0) {
+          const itemsHTML = AppState.cart
+            .map(
+              (item) => `
                     <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--border-color);">
-                        <img src="${item.image}" alt="${item.name}" style="width: 60px; height: 60px; object-fit: cover; border-radius: var(--border-radius-sm);">
+                        <img src="${item.image}" alt="${
+                item.name
+              }" style="width: 60px; height: 60px; object-fit: cover; border-radius: var(--border-radius-sm);">
                         <div style="flex: 1;">
-                            <div style="font-weight: 600; font-size: 0.875rem;">${item.name}</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">Cantidad: ${item.quantity}</div>
-                            <div style="font-size: 0.875rem; font-weight: 600; color: var(--primary);">${formatCurrency(item.price * item.quantity)}</div>
+                            <div style="font-weight: 600; font-size: 0.875rem;">${
+                              item.name
+                            }</div>
+                            <div style="font-size: 0.75rem; color: var(--text-muted);">Cantidad: ${
+                              item.quantity
+                            }</div>
+                            <div style="font-size: 0.875rem; font-weight: 600; color: var(--primary);">${formatCurrency(
+                              item.price * item.quantity
+                            )}</div>
                         </div>
                     </div>
-                `).join('');
-                document.getElementById('orderItems').innerHTML = itemsHTML;
-            } else {
-                document.getElementById('orderItems').innerHTML = '<p style="text-align: center; color: var(--text-muted);">No hay items en el carrito</p>';
-            }
+                `
+            )
+            .join("");
+          document.getElementById("orderItems").innerHTML = itemsHTML;
+        } else {
+          document.getElementById("orderItems").innerHTML =
+            '<p style="text-align: center; color: var(--text-muted);">No hay items en el carrito</p>';
+        }
+      }
+
+      function toggleDeliveryTime(radio) {
+        const scheduledFields = document.getElementById("scheduledTimeFields");
+        scheduledFields.style.display =
+          radio.value === "scheduled" ? "block" : "none";
+      }
+
+      function selectPaymentMethod(method, element) {
+        currentPaymentMethod = method;
+
+        // Update active state
+        document
+          .querySelectorAll(".payment-method")
+          .forEach((el) => el.classList.remove("active"));
+        element.classList.add("active");
+
+        // Show/hide forms
+        document.getElementById("cardPaymentForm").style.display =
+          method === "card" ? "block" : "none";
+        document.getElementById("cashPaymentForm").style.display =
+          method === "cash" ? "block" : "none";
+        document.getElementById("psePaymentForm").style.display =
+          method === "pse" ? "block" : "none";
+      }
+
+      function formatCardNumber(input) {
+        let value = input.value.replace(/\s/g, "");
+        value = value.replace(/[^0-9]/g, "");
+        let formatted = value.match(/.{1,4}/g)?.join(" ") || value;
+        input.value = formatted;
+
+        // Detect card type
+        const cardType = document.getElementById("cardType");
+        if (value.startsWith("4")) {
+          cardType.textContent = "💳 Visa";
+        } else if (value.startsWith("5")) {
+          cardType.textContent = "💳 Mastercard";
+        } else if (value.startsWith("3")) {
+          cardType.textContent = "💳 American Express";
+        } else {
+          cardType.textContent = "";
+        }
+      }
+
+      function formatExpiry(input) {
+        let value = input.value.replace(/\//g, "");
+        value = value.replace(/[^0-9]/g, "");
+        if (value.length >= 2) {
+          value = value.slice(0, 2) + "/" + value.slice(2, 4);
+        }
+        input.value = value;
+      }
+
+      function selectTip(amount, button) {
+        selectedTip = amount;
+        document
+          .querySelectorAll('button[onclick^="selectTip"]')
+          .forEach((btn) => {
+            btn.classList.remove("btn-primary");
+            btn.classList.add("btn-outline");
+          });
+        button.classList.remove("btn-outline");
+        button.classList.add("btn-primary");
+        document.getElementById("customTip").value = "";
+        loadOrderSummary();
+      }
+
+      function updateTip(value) {
+        selectedTip = parseInt(value) || 0;
+        document
+          .querySelectorAll('button[onclick^="selectTip"]')
+          .forEach((btn) => {
+            btn.classList.remove("btn-primary");
+            btn.classList.add("btn-outline");
+          });
+        loadOrderSummary();
+      }
+
+      function validateForm() {
+        const address = document.getElementById("deliveryAddress").value;
+        const city = document.getElementById("city").value;
+
+        if (!address || !city) {
+          showToast("❌ Por favor completa la dirección de entrega", "error");
+          return false;
         }
 
-        function toggleDeliveryTime(radio) {
-            const scheduledFields = document.getElementById('scheduledTimeFields');
-            scheduledFields.style.display = radio.value === 'scheduled' ? 'block' : 'none';
+        if (currentPaymentMethod === "card") {
+          const cardNumber = document
+            .getElementById("cardNumber")
+            .value.replace(/\s/g, "");
+          const cardName = document.getElementById("cardName").value;
+          const cardExpiry = document.getElementById("cardExpiry").value;
+          const cardCVV = document.getElementById("cardCVV").value;
+
+          if (!cardNumber || cardNumber.length < 13) {
+            showToast("❌ Número de tarjeta inválido", "error");
+            return false;
+          }
+
+          if (!cardName) {
+            showToast("❌ Ingresa el nombre en la tarjeta", "error");
+            return false;
+          }
+
+          if (!cardExpiry || cardExpiry.length !== 5) {
+            showToast("❌ Fecha de vencimiento inválida", "error");
+            return false;
+          }
+
+          if (!cardCVV || cardCVV.length < 3) {
+            showToast("❌ CVV inválido", "error");
+            return false;
+          }
         }
 
-        function selectPaymentMethod(method, element) {
-            currentPaymentMethod = method;
-
-            // Update active state
-            document.querySelectorAll('.payment-method').forEach(el => el.classList.remove('active'));
-            element.classList.add('active');
-
-            // Show/hide forms
-            document.getElementById('cardPaymentForm').style.display = method === 'card' ? 'block' : 'none';
-            document.getElementById('cashPaymentForm').style.display = method === 'cash' ? 'block' : 'none';
-            document.getElementById('psePaymentForm').style.display = method === 'pse' ? 'block' : 'none';
+        if (currentPaymentMethod === "pse") {
+          const bank = document.getElementById("bank").value;
+          if (!bank) {
+            showToast("❌ Selecciona tu banco", "error");
+            return false;
+          }
         }
 
-        function formatCardNumber(input) {
-            let value = input.value.replace(/\s/g, '');
-            value = value.replace(/[^0-9]/g, '');
-            let formatted = value.match(/.{1,4}/g)?.join(' ') || value;
-            input.value = formatted;
+        return true;
+      }
 
-            // Detect card type
-            const cardType = document.getElementById('cardType');
-            if (value.startsWith('4')) {
-                cardType.textContent = '💳 Visa';
-            } else if (value.startsWith('5')) {
-                cardType.textContent = '💳 Mastercard';
-            } else if (value.startsWith('3')) {
-                cardType.textContent = '💳 American Express';
-            } else {
-                cardType.textContent = '';
-            }
-        }
+      function processPayment() {
+        if (!validateForm()) return;
 
-        function formatExpiry(input) {
-            let value = input.value.replace(/\//g, '');
-            value = value.replace(/[^0-9]/g, '');
-            if (value.length >= 2) {
-                value = value.slice(0, 2) + '/' + value.slice(2, 4);
-            }
-            input.value = value;
-        }
+        // Simulate payment processing
+        showToast("⏳ Procesando pago...");
 
-        function selectTip(amount, button) {
-            selectedTip = amount;
-            document.querySelectorAll('button[onclick^="selectTip"]').forEach(btn => {
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-outline');
-            });
-            button.classList.remove('btn-outline');
-            button.classList.add('btn-primary');
-            document.getElementById('customTip').value = '';
-            loadOrderSummary();
-        }
+        setTimeout(() => {
+          showToast("✅ ¡Pedido realizado exitosamente!");
 
-        function updateTip(value) {
-            selectedTip = parseInt(value) || 0;
-            document.querySelectorAll('button[onclick^="selectTip"]').forEach(btn => {
-                btn.classList.remove('btn-primary');
-                btn.classList.add('btn-outline');
-            });
-            loadOrderSummary();
-        }
+          // Generate order number
+          const orderNumber = "ORD-" + Date.now();
+          localStorage.setItem("lastOrder", orderNumber);
 
-        function validateForm() {
-            const address = document.getElementById('deliveryAddress').value;
-            const city = document.getElementById('city').value;
+          // Clear cart
+          if (window.cart) {
+            window.cart.clear();
+          }
 
-            if (!address || !city) {
-                showToast('❌ Por favor completa la dirección de entrega', 'error');
-                return false;
-            }
+          // Redirect to confirmation/tracking
+          setTimeout(() => {
+            window.location.href = "tracking.html?order=" + orderNumber;
+          }, 2000);
+        }, 2000);
+      }
 
-            if (currentPaymentMethod === 'card') {
-                const cardNumber = document.getElementById('cardNumber').value.replace(/\s/g, '');
-                const cardName = document.getElementById('cardName').value;
-                const cardExpiry = document.getElementById('cardExpiry').value;
-                const cardCVV = document.getElementById('cardCVV').value;
+      // Initialize
+      document.addEventListener("DOMContentLoaded", () => {
+        loadOrderSummary();
 
-                if (!cardNumber || cardNumber.length < 13) {
-                    showToast('❌ Número de tarjeta inválido', 'error');
-                    return false;
-                }
-
-                if (!cardName) {
-                    showToast('❌ Ingresa el nombre en la tarjeta', 'error');
-                    return false;
-                }
-
-                if (!cardExpiry || cardExpiry.length !== 5) {
-                    showToast('❌ Fecha de vencimiento inválida', 'error');
-                    return false;
-                }
-
-                if (!cardCVV || cardCVV.length < 3) {
-                    showToast('❌ CVV inválido', 'error');
-                    return false;
-                }
-            }
-
-            if (currentPaymentMethod === 'pse') {
-                const bank = document.getElementById('bank').value;
-                if (!bank) {
-                    showToast('❌ Selecciona tu banco', 'error');
-                    return false;
-                }
-            }
-
-            return true;
-        }
-
-        function processPayment() {
-            if (!validateForm()) return;
-
-            // Simulate payment processing
-            showToast('⏳ Procesando pago...');
-
-            setTimeout(() => {
-                showToast('✅ ¡Pedido realizado exitosamente!');
-
-                // Generate order number
-                const orderNumber = 'ORD-' + Date.now();
-                localStorage.setItem('lastOrder', orderNumber);
-
-                // Clear cart
-                if (window.cart) {
-                    window.cart.clear();
-                }
-
-                // Redirect to confirmation/tracking
-                setTimeout(() => {
-                    window.location.href = 'tracking.html?order=' + orderNumber;
-                }, 2000);
-            }, 2000);
-        }
-
-        // Initialize
-        document.addEventListener('DOMContentLoaded', () => {
-            loadOrderSummary();
-
-            // Set minimum date for scheduled delivery
-            const today = new Date();
-            today.setDate(today.getDate() + 1);
-            document.getElementById('scheduledDate').min = today.toISOString().split('T')[0];
-        });
+        // Set minimum date for scheduled delivery
+        const today = new Date();
+        today.setDate(today.getDate() + 1);
+        document.getElementById("scheduledDate").min = today
+          .toISOString()
+          .split("T")[0];
+      });
     </script>
-</body>
-
+  </body>
 </html>
