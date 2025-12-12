@@ -6,31 +6,31 @@
 /* ========== VARIABLES CSS ========== */
 :root {
   /* Colores Principales - Modo Claro */
-  --primary: #FF6B35;
-  --primary-dark: #E85A28;
-  --primary-light: #FF8C5A;
-  --secondary: #004E89;
-  --secondary-dark: #003A66;
-  --accent: #F7CB15;
-  --success: #06D6A0;
-  --warning: #F77F00;
-  --danger: #EF476F;
+  --primary: #ff6b35;
+  --primary-dark: #e85a28;
+  --primary-light: #ff8c5a;
+  --secondary: #004e89;
+  --secondary-dark: #003a66;
+  --accent: #f7cb15;
+  --success: #06d6a0;
+  --warning: #f77f00;
+  --danger: #ef476f;
 
   /* Fondos */
-  --bg-primary: #FFFFFF;
-  --bg-secondary: #F8F9FA;
-  --bg-tertiary: #E9ECEF;
-  --bg-card: #FFFFFF;
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8f9fa;
+  --bg-tertiary: #e9ecef;
+  --bg-card: #ffffff;
   --bg-overlay: rgba(0, 0, 0, 0.5);
 
   /* Textos */
   --text-primary: #212529;
-  --text-secondary: #6C757D;
-  --text-muted: #ADB5BD;
-  --text-inverse: #FFFFFF;
+  --text-secondary: #6c757d;
+  --text-muted: #adb5bd;
+  --text-inverse: #ffffff;
 
   /* Bordes */
-  --border-color: #DEE2E6;
+  --border-color: #dee2e6;
   --border-radius-sm: 8px;
   --border-radius-md: 12px;
   --border-radius-lg: 20px;
@@ -53,8 +53,9 @@
   --spacing-3xl: 4rem;
 
   /* Tipografía */
-  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-heading: 'Poppins', sans-serif;
+  --font-primary: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  --font-heading: "Poppins", sans-serif;
 
   --font-size-xs: 0.75rem;
   --font-size-sm: 0.875rem;
@@ -93,25 +94,25 @@
 
 /* ========== MODO OSCURO ========== */
 [data-theme="dark"] {
-  --primary: #FF8C5A;
-  --primary-dark: #FF6B35;
-  --primary-light: #FFB088;
-  --secondary: #1A8FE3;
-  --secondary-dark: #0070CC;
-  --accent: #FFD93D;
+  --primary: #ff8c5a;
+  --primary-dark: #ff6b35;
+  --primary-light: #ffb088;
+  --secondary: #1a8fe3;
+  --secondary-dark: #0070cc;
+  --accent: #ffd93d;
 
   --bg-primary: #121212;
-  --bg-secondary: #1E1E1E;
-  --bg-tertiary: #2A2A2A;
-  --bg-card: #1A1A1A;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2a2a2a;
+  --bg-card: #1a1a1a;
   --bg-overlay: rgba(0, 0, 0, 0.7);
 
-  --text-primary: #F8F9FA;
-  --text-secondary: #ADB5BD;
-  --text-muted: #6C757D;
+  --text-primary: #f8f9fa;
+  --text-secondary: #adb5bd;
+  --text-muted: #6c757d;
   --text-inverse: #212529;
 
-  --border-color: #343A40;
+  --border-color: #343a40;
   --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.5);
   --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.6);
 }
@@ -137,7 +138,8 @@ body {
   line-height: 1.6;
   color: var(--text-primary);
   background-color: var(--bg-primary);
-  transition: background-color var(--transition-base), color var(--transition-base);
+  transition: background-color var(--transition-base),
+    color var(--transition-base);
   overflow-x: hidden;
 }
 
@@ -180,7 +182,7 @@ h6 {
 
 p {
   margin-bottom: var(--spacing-md);
-  color: var(--text-secondary);
+  color: var(--text-inverse);
 }
 
 a {
@@ -270,7 +272,7 @@ select {
 }
 
 .btn::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 50%;
   left: 50%;
@@ -288,7 +290,11 @@ select {
 }
 
 .btn-primary {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--primary) 0%,
+    var(--primary-dark) 100%
+  );
   color: white;
   box-shadow: var(--shadow-md);
 }
@@ -303,7 +309,11 @@ select {
 }
 
 .btn-secondary {
-  background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+  background: linear-gradient(
+    135deg,
+    var(--secondary) 0%,
+    var(--secondary-dark) 100%
+  );
   color: white;
 }
 
@@ -543,7 +553,7 @@ select {
 }
 
 .hero::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
@@ -563,6 +573,7 @@ select {
   font-size: var(--font-size-5xl);
   margin-bottom: var(--spacing-lg);
   animation: fadeInUp 0.8s ease-out;
+  padding-top: 4rem;
 }
 
 .hero-subtitle {
@@ -772,7 +783,6 @@ select {
 }
 
 @keyframes pulse {
-
   0%,
   100% {
     transform: scale(1);
@@ -875,7 +885,7 @@ select {
 }
 
 .theme-toggle label::before {
-  content: '';
+  content: "";
   position: absolute;
   height: 24px;
   width: 24px;
@@ -886,11 +896,11 @@ select {
   transition: var(--transition-base);
 }
 
-.theme-toggle input:checked+label {
+.theme-toggle input:checked + label {
   background: var(--primary);
 }
 
-.theme-toggle input:checked+label::before {
+.theme-toggle input:checked + label::before {
   transform: translateX(30px);
 }
 
@@ -915,7 +925,6 @@ select {
 
 /* ========== PRINT STYLES ========== */
 @media print {
-
   .header,
   .footer,
   .btn {
