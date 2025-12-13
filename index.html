@@ -1,490 +1,544 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Delivery de comida rápido y delicioso. Pide pizzas, hamburguesas y más a domicilio."
-    />
-    <meta
-      name="keywords"
-      content="delivery, comida, pizza, hamburguesas, domicilio"
-    />
-    <title>PizzaDelivery - Comida a tu puerta en minutos</title>
 
-    <!--  Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Delivery de comida rápido y delicioso. Pide pizzas, hamburguesas y más a domicilio." />
+  <meta name="keywords" content="delivery, comida, pizza, hamburguesas, domicilio" />
+  <title>PizzaDelivery - Comida a tu puerta en minutos</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="styles.css" />
+  <!--  Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap"
+    rel="stylesheet" />
 
-    <!-- PWA -->
-    <link rel="manifest" href="/manifest.json" />
-    <meta name="theme-color" content="#FF6B35" />
-  </head>
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
 
-  <body>
-    <!-- HEADER / NAVBAR -->
-    <header class="header" id="header">
-      <div class="container">
-        <nav class="navbar">
-          <a href="index.html" class="navbar-brand">
-            <span style="font-size: 2rem">🍕</span>
-            <span>PizzaDelivery</span>
-          </a>
+  <!-- PWA -->
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#FF6B35" />
 
-          <ul class="navbar-menu" id="navbarMenu">
-            <li><a href="menu.html" class="navbar-link">Menú</a></li>
-            <li>
-              <a href="promociones.html" class="navbar-link">Promociones</a>
-            </li>
-            <li>
-              <a href="recompensas.html" class="navbar-link">Recompensas</a>
-            </li>
-            <li><a href="perfil.html" class="navbar-link">Mi cuenta</a></li>
-            <li class="navbar-cart">
-              <a href="carrito.html" class="navbar-link">
-                🛒 Carrito
-                <span class="cart-badge" id="cartCount">0</span>
-              </a>
-            </li>
-          </ul>
+  <style>
+    /* New Styles for Professional Look */
+    .benefits-section {
+      padding: 5rem 0;
+      background: #fff;
+    }
 
-          <div style="display: flex; align-items: center; gap: 1rem">
-            <!-- Theme Toggle -->
-            <div class="theme-toggle">
-              <input type="checkbox" id="theme-switch" />
-              <label for="theme-switch"></label>
-            </div>
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2.5rem;
+    }
 
-            <!-- Mobile Menu Button -->
-            <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+    .benefit-card {
+      text-align: center;
+      padding: 2rem;
+      border-radius: 1rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid transparent;
+    }
+
+    .benefit-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+      border-color: var(--bg-secondary);
+    }
+
+    .benefit-icon-wrapper {
+      width: 70px;
+      height: 70px;
+      background: var(--bg-secondary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--primary);
+    }
+
+    .mid-cta-section {
+      padding: 6rem 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1513104890138-7c749659a591?w=1600');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+      text-align: center;
+      margin: 4rem 0;
+    }
+
+    .mid-cta-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- HEADER / NAVBAR -->
+  <header class="header" id="header">
+    <div class="container">
+      <nav class="navbar">
+        <a href="index.html" class="navbar-brand">
+          <span style="font-size: 2rem">🍕</span>
+          <span>PizzaDelivery</span>
+        </a>
+
+        <ul class="navbar-menu" id="navbarMenu">
+          <li><a href="menu.html" class="navbar-link">Menú</a></li>
+          <li>
+            <a href="promociones.html" class="navbar-link">Promociones</a>
+          </li>
+          <li>
+            <a href="recompensas.html" class="navbar-link">Recompensas</a>
+          </li>
+          <li><a href="perfil.html" class="navbar-link">Mi cuenta</a></li>
+          <li class="navbar-cart">
+            <a href="carrito.html" class="navbar-link">
+              🛒 Carrito
+              <span class="cart-badge" id="cartCount">0</span>
+            </a>
+          </li>
+        </ul>
+
+        <div style="display: flex; align-items: center; gap: 1rem">
+          <!-- Theme Toggle -->
+          <div class="theme-toggle">
+            <input type="checkbox" id="theme-switch" />
+            <label for="theme-switch"></label>
           </div>
-        </nav>
-      </div>
-    </header>
 
-    <!-- HERO SECTION -->
-    <section class="hero">
-      <div class="container">
-        <div class="hero-content">
-          <h1 class="hero-title">
-            Comida deliciosa <br />
-            a tu puerta en <span style="color: var(--accent)">minutos</span>
-          </h1>
-          <p class="hero-subtitle">
-            Pide tu comida favorita y recíbela caliente. <br />
-            Gana puntos con cada pedido y obtén descuentos exclusivos.
-          </p>
+          <!-- Mobile Menu Button -->
+          <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
 
-          <!-- Address Input -->
-          <div
-            style="
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Experiencia Gastronómica <br />
+          <span style="color: var(--accent)">Artesanal & Express</span>
+        </h1>
+        <p class="hero-subtitle">
+          Disfruta de sabores auténticos elaborados con pasión. <br />
+          Ingredientes premium, entrega prioritaria y recompensas en cada bocado.
+        </p>
+
+        <!-- Address Input -->
+        <div style="
               background: white;
               padding: 1.5rem;
               border-radius: var(--border-radius-lg);
               box-shadow: var(--shadow-xl);
               max-width: 600px;
-            "
-          >
-            <h3 style="color: var(--text-inverse); margin-bottom: 1rem">
-              ¿A dónde llevamos tu pedido?
-            </h3>
-            <div style="display: flex; gap: 0.5rem">
-              <input
-                type="text"
-                class="form-control"
-                id="addressInput"
-                placeholder="Ingresa tu dirección"
-                style="flex: 1"
-              />
-              <button class="btn btn-primary" onclick="validateAddress()">
-                Validar
-              </button>
-            </div>
-            <p
-              id="addressMessage"
-              style="margin-top: 0.5rem; font-size: 0.875rem"
-            ></p>
+            ">
+          <h3 style="color: var(--text-inverse); margin-bottom: 1rem">
+            ¿A dónde llevamos tu pedido?
+          </h3>
+          <div style="display: flex; gap: 0.5rem">
+            <input type="text" class="form-control" id="addressInput" placeholder="Ingresa tu dirección"
+              style="flex: 1" />
+            <button class="btn btn-primary" onclick="validateAddress()">
+              Validar
+            </button>
           </div>
+          <p id="addressMessage" style="margin-top: 0.5rem; font-size: 0.875rem"></p>
+        </div>
 
-          <!-- Stats -->
-          <div
-            style="
+        <!-- Stats -->
+        <div style="
               display: flex;
               gap: 2rem;
               margin-top: 2rem;
               flex-wrap: wrap;
               margin-bottom: 2rem;
-            "
-          >
-            <div>
-              <div style="font-size: 2rem; font-weight: bold">2 mil</div>
-              <div style="opacity: 0.9">Pedidos entregados</div>
-            </div>
-            <div>
-              <div style="font-size: 2rem; font-weight: bold">4.8 ⭐</div>
-              <div style="opacity: 0.9">Calificación promedio</div>
-            </div>
-            <div>
-              <div style="font-size: 2rem; font-weight: bold">30 min</div>
-              <div style="opacity: 0.9">Tiempo de entrega</div>
-            </div>
+            ">
+          <div>
+            <div style="font-size: 2rem; font-weight: bold; color: var(--primary)">+50k</div>
+            <div style="opacity: 0.9; font-weight: 500">Clientes Felices</div>
+          </div>
+          <div>
+            <div style="font-size: 2rem; font-weight: bold; color: var(--primary)">4.9 ⭐</div>
+            <div style="opacity: 0.9; font-weight: 500">Calificación</div>
+          </div>
+          <div>
+            <div style="font-size: 2rem; font-weight: bold; color: var(--primary)">Express</div>
+            <div style="opacity: 0.9; font-weight: 500">Entrega Rápida</div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CATEGORIES SECTION -->
-    <section style="padding: 4rem 0; background: var(--bg-secondary)">
-      <div class="container">
-        <h2 class="text-center" style="margin-bottom: 3rem">
-          Explora nuestro menú
+  <!-- BENEFITS SECTION -->
+  <section class="benefits-section">
+    <div class="container">
+      <div class="text-center" style="margin-bottom: 3rem">
+        <h2
+          style="margin-bottom: 1rem; background: linear-gradient(135deg, #ff6b35 0%, #f7931e 50%, #004e89 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 800;">
+          ¿Por qué elegir PizzaDelivery?
         </h2>
+        <p style="color: #6c757d; max-width: 650px; margin: 0 auto; font-size: 1.1rem; line-height: 1.7;">
+          Nos esforzamos por brindarte no solo comida, sino una <span
+            style="font-weight: 600; color: var(--primary);">experiencia culinaria excepcional</span> en cada pedido.
+        </p>
+      </div>
 
-        <div class="grid grid-cols-4">
-          <div
-            class="card"
-            onclick="window.location='menu.html?categoria=pizzas'"
-          >
-            <div
-              style="
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon-wrapper"
+            style="background: linear-gradient(135deg, #06d6a0 0%, #1b998b 100%); box-shadow: 0 8px 24px rgba(6, 214, 160, 0.3);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z" />
+            </svg>
+          </div>
+          <h3
+            style="background: linear-gradient(135deg, #06d6a0 0%, #1b998b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.75rem;">
+            Ingredientes Frescos
+          </h3>
+          <p style="color: #4a5568; font-size: 0.95rem; line-height: 1.6;">
+            Seleccionamos <strong style="color: #2d3748;">diariamente</strong> vegetales y carnes de proveedores locales
+            certificados.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-wrapper"
+            style="background: linear-gradient(135deg, #f77f00 0%, #ff9f40 100%); box-shadow: 0 8px 24px rgba(247, 127, 0, 0.3);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <h3
+            style="background: linear-gradient(135deg, #f77f00 0%, #ff9f40 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.75rem;">
+            Entrega Veloz
+          </h3>
+          <p style="color: #4a5568; font-size: 0.95rem; line-height: 1.6;">
+            Sistema de logística optimizado para que tu comida llegue <strong style="color: #2d3748;">caliente</strong>
+            en tiempo récord.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-wrapper"
+            style="background: linear-gradient(135deg, #004e89 0%, #1a73e8 100%); box-shadow: 0 8px 24px rgba(26, 115, 232, 0.3);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+          </div>
+          <h3
+            style="background: linear-gradient(135deg, #004e89 0%, #1a73e8 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.75rem;">
+            Calidad Garantizada
+          </h3>
+          <p style="color: #4a5568; font-size: 0.95rem; line-height: 1.6;">
+            Si algo no está perfecto, lo solucionamos <strong style="color: #2d3748;">al instante</strong>. Tu
+            satisfacción es prioridad.
+          </p>
+        </div>
+
+        <div class="benefit-card">
+          <div class="benefit-icon-wrapper"
+            style="background: linear-gradient(135deg, #ef476f 0%, #f78fa7 100%); box-shadow: 0 8px 24px rgba(239, 71, 111, 0.3);">
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none"
+              stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <path
+                d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+            </svg>
+          </div>
+          <h3
+            style="background: linear-gradient(135deg, #ef476f 0%, #f78fa7 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; font-weight: 700; font-size: 1.4rem; margin-bottom: 0.75rem;">
+            Soporte 24/7
+          </h3>
+          <p style="color: #4a5568; font-size: 0.95rem; line-height: 1.6;">
+            Equipo de atención al cliente <strong style="color: #2d3748;">disponible</strong> en todo momento para
+            asistirte.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES SECTION -->
+  <section style="padding: 4rem 0; background: var(--bg-secondary)">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 3rem">
+        Explora nuestro menú
+      </h2>
+
+      <div class="grid grid-cols-4">
+        <div class="card" onclick="window.location='menu.html?categoria=pizzas'">
+          <div style="
                 background: linear-gradient(135deg, #ff6b35 0%, #f7931e 100%);
                 height: 150px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 4rem;
-              "
-            >
-              🍕
-            </div>
-            <div class="card-body text-center">
-              <h4>Pizzas</h4>
-              <p style="margin-bottom: 0">Artesanales y deliciosas</p>
-            </div>
+              ">
+            🍕
           </div>
+          <div class="card-body text-center">
+            <h4>Pizzas</h4>
+            <p style="margin-bottom: 0">Artesanales y deliciosas</p>
+          </div>
+        </div>
 
-          <div
-            class="card"
-            onclick="window.location='menu.html?categoria=hamburguesas'"
-          >
-            <div
-              style="
+        <div class="card" onclick="window.location='menu.html?categoria=hamburguesas'">
+          <div style="
                 background: linear-gradient(135deg, #004e89 0%, #1a73e8 100%);
                 height: 150px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 4rem;
-              "
-            >
-              🍔
-            </div>
-            <div class="card-body text-center">
-              <h4>Hamburguesas</h4>
-              <p style="margin-bottom: 0">Jugosas y perfectas</p>
-            </div>
+              ">
+            🍔
           </div>
+          <div class="card-body text-center">
+            <h4>Hamburguesas</h4>
+            <p style="margin-bottom: 0">Jugosas y perfectas</p>
+          </div>
+        </div>
 
-          <div
-            class="card"
-            onclick="window.location='menu.html?categoria=bebidas'"
-          >
-            <div
-              style="
+        <div class="card" onclick="window.location='menu.html?categoria=bebidas'">
+          <div style="
                 background: linear-gradient(135deg, #06d6a0 0%, #1b998b 100%);
                 height: 150px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 4rem;
-              "
-            >
-              🥤
-            </div>
-            <div class="card-body text-center">
-              <h4>Bebidas</h4>
-              <p style="margin-bottom: 0">Refrescantes y frías</p>
-            </div>
+              ">
+            🥤
           </div>
+          <div class="card-body text-center">
+            <h4>Bebidas</h4>
+            <p style="margin-bottom: 0">Refrescantes y frías</p>
+          </div>
+        </div>
 
-          <div
-            class="card"
-            onclick="window.location='menu.html?categoria=postres'"
-          >
-            <div
-              style="
+        <div class="card" onclick="window.location='menu.html?categoria=postres'">
+          <div style="
                 background: linear-gradient(135deg, #ef476f 0%, #f78fa7 100%);
                 height: 150px;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 4rem;
-              "
-            >
-              🍰
-            </div>
-            <div class="card-body text-center">
-              <h4>Postres</h4>
-              <p style="margin-bottom: 0">Dulces y tentadores</p>
-            </div>
+              ">
+            🍰
+          </div>
+          <div class="card-body text-center">
+            <h4>Postres</h4>
+            <p style="margin-bottom: 0">Dulces y tentadores</p>
           </div>
         </div>
-
-        <div class="text-center" style="margin-top: 2rem">
-          <a href="menu.html" class="btn btn-primary btn-lg"
-            >Ver menú completo</a
-          >
-        </div>
       </div>
-    </section>
 
-    <!-- FEATURED PRODUCTS -->
-    <section style="padding: 4rem 0">
-      <div class="container">
-        <div
-          style="
+      <div class="text-center" style="margin-top: 2rem">
+        <a href="menu.html" class="btn btn-primary btn-lg">Ver menú completo</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
+  <section style="padding: 4rem 0">
+    <div class="container">
+      <div style="
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 2rem;
-          "
-        >
-          <h2>Más vendidos</h2>
-          <a href="menu.html?destacados=true" class="btn btn-outline"
-            >Ver todos</a
-          >
+          ">
+        <h2>Más vendidos</h2>
+        <a href="menu.html?destacados=true" class="btn btn-outline">Ver todos</a>
+      </div>
+
+      <div class="grid grid-cols-4" id="featuredProducts">
+        <!-- Los productos se cargarán dinámicamente -->
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400" alt="Pizza" class="card-img" />
+          <span class="badge badge-danger" style="position: absolute; top: 1rem; right: 1rem">🔥 Más vendido</span>
+          <div class="card-body">
+            <h4 class="card-title">Pizza Margarita</h4>
+            <div style="
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                  margin-bottom: 0.5rem;
+                ">
+              <span style="color: var(--accent)">⭐⭐⭐⭐⭐</span>
+              <span style="font-size: 0.875rem; color: var(--text-muted)">(234)</span>
+            </div>
+            <p class="card-text">Tomate, mozzarella y albahaca fresca</p>
+            <div style="
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                ">
+              <div>
+                <span style="
+                      font-size: 1.5rem;
+                      font-weight: bold;
+                      color: var(--primary);
+                    ">$25,000</span>
+              </div>
+              <button class="btn btn-primary btn-sm" onclick="quickAdd(1)">
+                Agregar
+              </button>
+            </div>
+          </div>
         </div>
 
-        <div class="grid grid-cols-4" id="featuredProducts">
-          <!-- Los productos se cargarán dinámicamente -->
-          <div class="card">
-            <img
-              src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400"
-              alt="Pizza"
-              class="card-img"
-            />
-            <span
-              class="badge badge-danger"
-              style="position: absolute; top: 1rem; right: 1rem"
-              >🔥 Más vendido</span
-            >
-            <div class="card-body">
-              <h4 class="card-title">Pizza Margarita</h4>
-              <div
-                style="
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400" alt="Hamburguesa"
+            class="card-img" />
+          <div class="card-body">
+            <h4 class="card-title">Burger Clásica</h4>
+            <div style="
                   display: flex;
                   align-items: center;
                   gap: 0.5rem;
                   margin-bottom: 0.5rem;
-                "
-              >
-                <span style="color: var(--accent)">⭐⭐⭐⭐⭐</span>
-                <span style="font-size: 0.875rem; color: var(--text-muted)"
-                  >(234)</span
-                >
-              </div>
-              <p class="card-text">Tomate, mozzarella y albahaca fresca</p>
-              <div
-                style="
+                ">
+              <span style="color: var(--accent)">⭐⭐⭐⭐⭐</span>
+              <span style="font-size: 0.875rem; color: var(--text-muted)">(189)</span>
+            </div>
+            <p class="card-text">Carne 100% res, queso cheddar, lechuga</p>
+            <div style="
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
-                "
-              >
-                <div>
-                  <span
-                    style="
+                ">
+              <div>
+                <span style="
                       font-size: 1.5rem;
                       font-weight: bold;
                       color: var(--primary);
-                    "
-                    >$25,000</span
-                  >
-                </div>
-                <button class="btn btn-primary btn-sm" onclick="quickAdd(1)">
-                  Agregar
-                </button>
+                    ">$22,000</span>
               </div>
+              <button class="btn btn-primary btn-sm" onclick="quickAdd(2)">
+                Agregar
+              </button>
             </div>
           </div>
+        </div>
 
-          <div class="card">
-            <img
-              src="https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400"
-              alt="Hamburguesa"
-              class="card-img"
-            />
-            <div class="card-body">
-              <h4 class="card-title">Burger Clásica</h4>
-              <div
-                style="
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400" alt="Pizza Pepperoni"
+            class="card-img" />
+          <span class="badge badge-warning" style="position: absolute; top: 1rem; right: 1rem">20% OFF</span>
+          <div class="card-body">
+            <h4 class="card-title">Pizza Pepperoni</h4>
+            <div style="
                   display: flex;
                   align-items: center;
                   gap: 0.5rem;
                   margin-bottom: 0.5rem;
-                "
-              >
-                <span style="color: var(--accent)">⭐⭐⭐⭐⭐</span>
-                <span style="font-size: 0.875rem; color: var(--text-muted)"
-                  >(189)</span
-                >
-              </div>
-              <p class="card-text">Carne 100% res, queso cheddar, lechuga</p>
-              <div
-                style="
-                  display: flex;
-                  justify-content: space-between;
-                  align-items: center;
-                "
-              >
-                <div>
-                  <span
-                    style="
-                      font-size: 1.5rem;
-                      font-weight: bold;
-                      color: var(--primary);
-                    "
-                    >$22,000</span
-                  >
-                </div>
-                <button class="btn btn-primary btn-sm" onclick="quickAdd(2)">
-                  Agregar
-                </button>
-              </div>
+                ">
+              <span style="color: var(--accent)">⭐⭐⭐⭐⭐</span>
+              <span style="font-size: 0.875rem; color: var(--text-muted)">(312)</span>
             </div>
-          </div>
-
-          <div class="card">
-            <img
-              src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400"
-              alt="Pizza Pepperoni"
-              class="card-img"
-            />
-            <span
-              class="badge badge-warning"
-              style="position: absolute; top: 1rem; right: 1rem"
-              >20% OFF</span
-            >
-            <div class="card-body">
-              <h4 class="card-title">Pizza Pepperoni</h4>
-              <div
-                style="
-                  display: flex;
-                  align-items: center;
-                  gap: 0.5rem;
-                  margin-bottom: 0.5rem;
-                "
-              >
-                <span style="color: var(--accent)">⭐⭐⭐⭐⭐</span>
-                <span style="font-size: 0.875rem; color: var(--text-muted)"
-                  >(312)</span
-                >
-              </div>
-              <p class="card-text">Pepperoni premium, queso extra</p>
-              <div
-                style="
+            <p class="card-text">Pepperoni premium, queso extra</p>
+            <div style="
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
-                "
-              >
-                <div>
-                  <span
-                    style="
+                ">
+              <div>
+                <span style="
                       font-size: 1.25rem;
                       text-decoration: line-through;
                       color: var(--text-muted);
-                    "
-                    >$30,000</span
-                  >
-                  <span
-                    style="
+                    ">$30,000</span>
+                <span style="
                       font-size: 1.5rem;
                       font-weight: bold;
                       color: var(--primary);
                       margin-left: 0.5rem;
-                    "
-                    >$24,000</span
-                  >
-                </div>
-                <button class="btn btn-primary btn-sm" onclick="quickAdd(3)">
-                  Agregar
-                </button>
+                    ">$24,000</span>
               </div>
+              <button class="btn btn-primary btn-sm" onclick="quickAdd(3)">
+                Agregar
+              </button>
             </div>
           </div>
+        </div>
 
-          <div class="card">
-            <img
-              src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400"
-              alt="Combo"
-              class="card-img"
-            />
-            <span
-              class="badge badge-success"
-              style="position: absolute; top: 1rem; right: 1rem"
-              >Nuevo</span
-            >
-            <div class="card-body">
-              <h4 class="card-title">Combo Familiar</h4>
-              <div
-                style="
+        <div class="card">
+          <img src="https://images.unsplash.com/photo-1550547660-d9450f859349?w=400" alt="Combo" class="card-img" />
+          <span class="badge badge-success" style="position: absolute; top: 1rem; right: 1rem">Nuevo</span>
+          <div class="card-body">
+            <h4 class="card-title">Combo Familiar</h4>
+            <div style="
                   display: flex;
                   align-items: center;
                   gap: 0.5rem;
                   margin-bottom: 0.5rem;
-                "
-              >
-                <span style="color: var(--accent)">⭐⭐⭐⭐⭐</span>
-                <span style="font-size: 0.875rem; color: var(--text-muted)"
-                  >(98)</span
-                >
-              </div>
-              <p class="card-text">2 pizzas grandes + bebida 2L</p>
-              <div
-                style="
+                ">
+              <span style="color: var(--accent)">⭐⭐⭐⭐⭐</span>
+              <span style="font-size: 0.875rem; color: var(--text-muted)">(98)</span>
+            </div>
+            <p class="card-text">2 pizzas grandes + bebida 2L</p>
+            <div style="
                   display: flex;
                   justify-content: space-between;
                   align-items: center;
-                "
-              >
-                <div>
-                  <span
-                    style="
+                ">
+              <div>
+                <span style="
                       font-size: 1.5rem;
                       font-weight: bold;
                       color: var(--primary);
-                    "
-                    >$65,000</span
-                  >
-                </div>
-                <button class="btn btn-primary btn-sm" onclick="quickAdd(4)">
-                  Agregar
-                </button>
+                    ">$65,000</span>
               </div>
+              <button class="btn btn-primary btn-sm" onclick="quickAdd(4)">
+                Agregar
+              </button>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- HOW IT WORKS -->
-    <section style="padding: 4rem 0; background: var(--bg-secondary)">
-      <div class="container">
-        <h2 class="text-center" style="margin-bottom: 3rem">¿Cómo funciona?</h2>
+  <!-- MID CTA SECTION -->
+  <section class="mid-cta-section">
+    <div class="container mid-cta-content">
+      <h2>¿Hambre de algo extraordinario?</h2>
+      <p
+        style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; max-width: 700px; margin-left: auto; margin-right: auto;">
+        No esperes más para probar la mejor pizza de la ciudad. Ofertas exclusivas te esperan en nuestro menú completo.
+      </p>
+      <a href="menu.html" class="btn btn-primary btn-lg" style="padding: 1rem 3rem; font-size: 1.2rem;">
+        Ver Menú Completo
+      </a>
+    </div>
+  </section>
 
-        <div class="grid grid-cols-4">
-          <div class="text-center">
-            <div
-              style="
+  <!-- HOW IT WORKS -->
+  <section style="padding: 4rem 0; background: var(--bg-secondary)">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 3rem">¿Cómo funciona?</h2>
+
+      <div class="grid grid-cols-4">
+        <div class="text-center">
+          <div style="
                 width: 80px;
                 height: 80px;
                 background: linear-gradient(
@@ -499,17 +553,15 @@
                 font-size: 2.5rem;
                 margin: 0 auto 1rem;
                 box-shadow: var(--shadow-lg);
-              "
-            >
-              📍
-            </div>
-            <h4>1. Ingresa tu dirección</h4>
-            <p>Validamos que hagamos entregas en tu zona</p>
+              ">
+            📍
           </div>
+          <h4>1. Ingresa tu dirección</h4>
+          <p>Validamos que hagamos entregas en tu zona</p>
+        </div>
 
-          <div class="text-center">
-            <div
-              style="
+        <div class="text-center">
+          <div style="
                 width: 80px;
                 height: 80px;
                 background: linear-gradient(
@@ -524,17 +576,15 @@
                 font-size: 2.5rem;
                 margin: 0 auto 1rem;
                 box-shadow: var(--shadow-lg);
-              "
-            >
-              🍕
-            </div>
-            <h4>2. Elige tus productos</h4>
-            <p>Explora nuestro menú y personaliza todo</p>
+              ">
+            🍕
           </div>
+          <h4>2. Elige tus productos</h4>
+          <p>Explora nuestro menú y personaliza todo</p>
+        </div>
 
-          <div class="text-center">
-            <div
-              style="
+        <div class="text-center">
+          <div style="
                 width: 80px;
                 height: 80px;
                 background: linear-gradient(135deg, var(--success), #05c090);
@@ -545,17 +595,15 @@
                 font-size: 2.5rem;
                 margin: 0 auto 1rem;
                 box-shadow: var(--shadow-lg);
-              "
-            >
-              💳
-            </div>
-            <h4>3. Paga seguro</h4>
-            <p>Múltiples métodos de pago disponibles</p>
+              ">
+            💳
           </div>
+          <h4>3. Paga seguro</h4>
+          <p>Múltiples métodos de pago disponibles</p>
+        </div>
 
-          <div class="text-center">
-            <div
-              style="
+        <div class="text-center">
+          <div style="
                 width: 80px;
                 height: 80px;
                 background: linear-gradient(135deg, var(--warning), #e67300);
@@ -566,133 +614,105 @@
                 font-size: 2.5rem;
                 margin: 0 auto 1rem;
                 box-shadow: var(--shadow-lg);
-              "
-            >
-              🚚
-            </div>
-            <h4>4. Recibe en minutos</h4>
-            <p>Rastrea tu pedido en tiempo real</p>
+              ">
+            🚚
           </div>
+          <h4>4. Recibe en minutos</h4>
+          <p>Rastrea tu pedido en tiempo real</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- PROMOTIONS -->
-    <section style="padding: 4rem 0">
-      <div class="container">
-        <h2 class="text-center" style="margin-bottom: 3rem">
-          Promociones activas 🎉
-        </h2>
+  <!-- PROMOTIONS -->
+  <section style="padding: 4rem 0">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 3rem">
+        Promociones activas 🎉
+      </h2>
 
-        <div class="grid grid-cols-3">
-          <div
-            class="card"
-            style="
+      <div class="grid grid-cols-3">
+        <div class="card" style="
               background: linear-gradient(135deg, #ff6b35, #f7931e);
               color: white;
-            "
-          >
-            <div class="card-body">
-              <h3 style="color: white">15% OFF</h3>
-              <p style="color: rgba(255, 255, 255, 0.9)">
-                En tu primera compra
-              </p>
-              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8)">
-                Código: <strong>BIENVENIDO15</strong>
-              </p>
-              <button
-                class="btn"
-                style="background: white; color: var(--primary)"
-              >
-                Usar cupón
-              </button>
-            </div>
+            ">
+          <div class="card-body">
+            <h3 style="color: white">15% OFF</h3>
+            <p style="color: rgba(255, 255, 255, 0.9)">
+              En tu primera compra
+            </p>
+            <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8)">
+              Código: <strong>BIENVENIDO15</strong>
+            </p>
+            <button class="btn" style="background: white; color: var(--primary)">
+              Usar cupón
+            </button>
           </div>
+        </div>
 
-          <div
-            class="card"
-            style="
+        <div class="card" style="
               background: linear-gradient(135deg, #004e89, #1a73e8);
               color: white;
-            "
-          >
-            <div class="card-body">
-              <h3 style="color: white">Envío GRATIS</h3>
-              <p style="color: rgba(255, 255, 255, 0.9)">
-                En pedidos mayores a $50,000
-              </p>
-              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8)">
-                Válido hasta fin de mes
-              </p>
-              <a
-                href="menu.html"
-                class="btn"
-                style="background: white; color: var(--secondary)"
-                >Ordenar ahora</a
-              >
-            </div>
+            ">
+          <div class="card-body">
+            <h3 style="color: white">Envío GRATIS</h3>
+            <p style="color: rgba(255, 255, 255, 0.9)">
+              En pedidos mayores a $50,000
+            </p>
+            <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8)">
+              Válido hasta fin de mes
+            </p>
+            <a href="menu.html" class="btn" style="background: white; color: var(--secondary)">Ordenar ahora</a>
           </div>
+        </div>
 
-          <div
-            class="card"
-            style="
+        <div class="card" style="
               background: linear-gradient(135deg, #06d6a0, #1b998b);
               color: white;
-            "
-          >
-            <div class="card-body">
-              <h3 style="color: white">2x1 Martes</h3>
-              <p style="color: rgba(255, 255, 255, 0.9)">
-                En todas las bebidas
-              </p>
-              <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8)">
-                Solo los días martes
-              </p>
-              <a
-                href="promociones.html"
-                class="btn"
-                style="background: white; color: var(--success)"
-                >Ver más</a
-              >
-            </div>
+            ">
+          <div class="card-body">
+            <h3 style="color: white">2x1 Martes</h3>
+            <p style="color: rgba(255, 255, 255, 0.9)">
+              En todas las bebidas
+            </p>
+            <p style="font-size: 0.875rem; color: rgba(255, 255, 255, 0.8)">
+              Solo los días martes
+            </p>
+            <a href="promociones.html" class="btn" style="background: white; color: var(--success)">Ver más</a>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- TESTIMONIALS -->
-    <section style="padding: 4rem 0; background: var(--bg-secondary)">
-      <div class="container">
-        <h2 class="text-center" style="margin-bottom: 3rem">
-          Lo que dicen nuestros clientes
-        </h2>
+  <!-- TESTIMONIALS -->
+  <section style="padding: 4rem 0; background: var(--bg-secondary)">
+    <div class="container">
+      <h2 class="text-center" style="margin-bottom: 3rem">
+        Lo que dicen nuestros clientes
+      </h2>
 
-        <div class="grid grid-cols-3">
-          <div class="card">
-            <div class="card-body">
-              <div
-                style="
+      <div class="grid grid-cols-3">
+        <div class="card">
+          <div class="card-body">
+            <div style="
                   color: var(--accent);
                   font-size: 1.5rem;
                   margin-bottom: 1rem;
-                "
-              >
-                ⭐⭐⭐⭐⭐
-              </div>
-              <p>
-                "La mejor pizza de la ciudad. Llegó caliente y en tiempo récord.
-                ¡Totalmente recomendado!"
-              </p>
-              <div
-                style="
+                ">
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p>
+              "La mejor pizza de la ciudad. Llegó caliente y en tiempo récord.
+              ¡Totalmente recomendado!"
+            </p>
+            <div style="
                   display: flex;
                   align-items: center;
                   gap: 1rem;
                   margin-top: 1rem;
-                "
-              >
-                <div
-                  style="
+                ">
+              <div style="
                     width: 50px;
                     height: 50px;
                     background: var(--primary);
@@ -702,45 +722,39 @@
                     justify-content: center;
                     color: white;
                     font-weight: bold;
-                  "
-                >
-                  JM
-                </div>
-                <div>
-                  <div style="font-weight: 600">Juan Martínez</div>
-                  <div style="font-size: 0.875rem; color: var(--text-muted)">
-                    Cliente frecuente
-                  </div>
+                  ">
+                JM
+              </div>
+              <div>
+                <div style="font-weight: 600">Juan Martínez</div>
+                <div style="font-size: 0.875rem; color: var(--text-muted)">
+                  Cliente frecuente
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="card">
-            <div class="card-body">
-              <div
-                style="
+        <div class="card">
+          <div class="card-body">
+            <div style="
                   color: var(--accent);
                   font-size: 1.5rem;
                   margin-bottom: 1rem;
-                "
-              >
-                ⭐⭐⭐⭐⭐
-              </div>
-              <p>
-                "El sistema de puntos es genial. Ya soy nivel Oro y los
-                beneficios valen la pena."
-              </p>
-              <div
-                style="
+                ">
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p>
+              "El sistema de puntos es genial. Ya soy nivel Oro y los
+              beneficios valen la pena."
+            </p>
+            <div style="
                   display: flex;
                   align-items: center;
                   gap: 1rem;
                   margin-top: 1rem;
-                "
-              >
-                <div
-                  style="
+                ">
+              <div style="
                     width: 50px;
                     height: 50px;
                     background: var(--secondary);
@@ -750,45 +764,39 @@
                     justify-content: center;
                     color: white;
                     font-weight: bold;
-                  "
-                >
-                  MC
-                </div>
-                <div>
-                  <div style="font-weight: 600">María Castro</div>
-                  <div style="font-size: 0.875rem; color: var(--text-muted)">
-                    Nivel Oro 🏆
-                  </div>
+                  ">
+                MC
+              </div>
+              <div>
+                <div style="font-weight: 600">María Castro</div>
+                <div style="font-size: 0.875rem; color: var(--text-muted)">
+                  Nivel Oro 🏆
                 </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <div class="card">
-            <div class="card-body">
-              <div
-                style="
+        <div class="card">
+          <div class="card-body">
+            <div style="
                   color: var(--accent);
                   font-size: 1.5rem;
                   margin-bottom: 1rem;
-                "
-              >
-                ⭐⭐⭐⭐⭐
-              </div>
-              <p>
-                "Probé el combo familiar y quedamos encantados. Excelente
-                relación calidad-precio."
-              </p>
-              <div
-                style="
+                ">
+              ⭐⭐⭐⭐⭐
+            </div>
+            <p>
+              "Probé el combo familiar y quedamos encantados. Excelente
+              relación calidad-precio."
+            </p>
+            <div style="
                   display: flex;
                   align-items: center;
                   gap: 1rem;
                   margin-top: 1rem;
-                "
-              >
-                <div
-                  style="
+                ">
+              <div style="
                     width: 50px;
                     height: 50px;
                     background: var(--success);
@@ -798,260 +806,181 @@
                     justify-content: center;
                     color: white;
                     font-weight: bold;
-                  "
-                >
-                  CR
-                </div>
-                <div>
-                  <div style="font-weight: 600">Carlos Rodríguez</div>
-                  <div style="font-size: 0.875rem; color: var(--text-muted)">
-                    Cliente nuevo
-                  </div>
+                  ">
+                CR
+              </div>
+              <div>
+                <div style="font-weight: 600">Carlos Rodríguez</div>
+                <div style="font-size: 0.875rem; color: var(--text-muted)">
+                  Cliente nuevo
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA SECTION -->
-    <section
-      style="
+  <!-- CTA SECTION -->
+  <section style="
         padding: 5rem 0;
         background: linear-gradient(135deg, var(--primary), var(--secondary));
         color: white;
         text-align: center;
-      "
-    >
-      <div class="container">
-        <h2 style="color: white; margin-bottom: 1rem">¿Listo para ordenar?</h2>
-        <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95">
-          Descarga nuestra app y obtén 20% de descuento en tu primer pedido
-        </p>
-        <div
-          style="
+      ">
+    <div class="container">
+      <h2 style="color: white; margin-bottom: 1rem">¿Listo para ordenar?</h2>
+      <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.95">
+        Descarga nuestra app y obtén 20% de descuento en tu primer pedido
+      </p>
+      <div style="
             display: flex;
             gap: 1rem;
             justify-content: center;
             flex-wrap: wrap;
-          "
-        >
-          <a
-            href="menu.html"
-            class="btn btn-lg"
-            style="background: white; color: var(--primary)"
-          >
-            Ver Menú
-          </a>
-          <button
-            class="btn btn-outline btn-lg"
-            style="border-color: white; color: white"
-          >
-            📱 Descargar App
-          </button>
-        </div>
+          ">
+        <a href="menu.html" class="btn btn-lg" style="background: white; color: var(--primary)">
+          Ver Menú
+        </a>
+        <button class="btn btn-outline btn-lg" style="border-color: white; color: white">
+          📱 Descargar App
+        </button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- FOOTER -->
-    <footer style="background: var(--bg-tertiary); padding: 3rem 0 1rem">
-      <div class="container">
-        <div class="grid grid-cols-4">
-          <div>
-            <h4>PizzaDelivery</h4>
-            <p>Comida deliciosa a tu puerta en minutos.</p>
-            <div
-              style="
-                display: flex;
-                gap: 1rem;
-                font-size: 1.5rem;
-                margin-top: 1rem;
-              "
-            >
-              <a href="#" style="color: var(--text-primary)">📘</a>
-              <a href="#" style="color: var(--text-primary)">📸</a>
-              <a href="#" style="color: var(--text-primary)">🐦</a>
-            </div>
-          </div>
+  <!-- FOOTER -->
+  <div id="footer-placeholder"></div>
 
-          <div>
-            <h5>Menú</h5>
-            <ul style="list-style: none">
-              <li style="margin-bottom: 0.5rem">
-                <a href="menu.html">Pizzas</a>
-              </li>
-              <li style="margin-bottom: 0.5rem">
-                <a href="menu.html">Hamburguesas</a>
-              </li>
-              <li style="margin-bottom: 0.5rem">
-                <a href="menu.html">Bebidas</a>
-              </li>
-              <li style="margin-bottom: 0.5rem">
-                <a href="menu.html">Postres</a>
-              </li>
-            </ul>
-          </div>
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+  <script>
+    // Theme Toggle
+    const themeSwitch = document.getElementById("theme-switch");
+    const currentTheme = localStorage.getItem("theme") || "light";
 
-          <div>
-            <h5>Información</h5>
-            <ul style="list-style: none">
-              <li style="margin-bottom: 0.5rem">
-                <a href="#">Sobre nosotros</a>
-              </li>
-              <li style="margin-bottom: 0.5rem">
-                <a href="ayuda/faq.html">FAQ</a>
-              </li>
-              <li style="margin-bottom: 0.5rem">
-                <a href="ayuda/contacto.html">Contacto</a>
-              </li>
-              <li style="margin-bottom: 0.5rem">
-                <a href="#">Términos y condiciones</a>
-              </li>
-            </ul>
-          </div>
+    if (currentTheme === "dark") {
+      document.documentElement.setAttribute("data-theme", "dark");
+      themeSwitch.checked = true;
+    }
 
-          <div>
-            <h5>Contacto</h5>
-            <p>📧 hola@pizzadelivery.com</p>
-            <p>📞 +57 300 123 4567</p>
-            <p>📍 Bogotá, Colombia</p>
-          </div>
-        </div>
-
-        <div
-          style="
-            border-top: 1px solid var(--border-color);
-            margin-top: 2rem;
-            padding-top: 2rem;
-            text-align: center;
-            color: var(--text-muted);
-          "
-        >
-          <p>&copy; 2024 PizzaDelivery. Todos los derechos reservados.</p>
-        </div>
-      </div>
-    </footer>
-
-    <!-- JavaScript -->
-    <script src="app.js"></script>
-    <script>
-      // Theme Toggle
-      const themeSwitch = document.getElementById("theme-switch");
-      const currentTheme = localStorage.getItem("theme") || "light";
-
-      if (currentTheme === "dark") {
+    themeSwitch.addEventListener("change", function () {
+      if (this.checked) {
         document.documentElement.setAttribute("data-theme", "dark");
-        themeSwitch.checked = true;
+        localStorage.setItem("theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+        localStorage.setItem("theme", "light");
+      }
+    });
+
+    // Mobile Menu Toggle
+    const mobileMenuBtn = document.getElementById("mobileMenuBtn");
+    const navbarMenu = document.getElementById("navbarMenu");
+
+    if (mobileMenuBtn) {
+      mobileMenuBtn.addEventListener("click", function () {
+        navbarMenu.classList.toggle("active");
+        // Cambiar icono
+        this.textContent = navbarMenu.classList.contains("active")
+          ? "✕"
+          : "☰";
+      });
+
+      // Cerrar menú al hacer clic en un link
+      const menuLinks = navbarMenu.querySelectorAll("a");
+      menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+          navbarMenu.classList.remove("active");
+          mobileMenuBtn.textContent = "☰";
+        });
+      });
+    }
+
+    // Address Validation
+    function validateAddress() {
+      const address = document.getElementById("addressInput").value;
+      const message = document.getElementById("addressMessage");
+
+      if (!address) {
+        message.style.color = "#EF476F";
+        message.textContent = "❌ Por favor ingresa una dirección";
+        return;
       }
 
-      themeSwitch.addEventListener("change", function () {
-        if (this.checked) {
-          document.documentElement.setAttribute("data-theme", "dark");
-          localStorage.setItem("theme", "dark");
-        } else {
-          document.documentElement.setAttribute("data-theme", "light");
-          localStorage.setItem("theme", "light");
+      // Simulate API call
+      message.style.color = "#F77F00";
+      message.textContent = "⏳ Validando zona...";
+
+      setTimeout(() => {
+        message.style.color = "#06D6A0";
+        message.textContent =
+          "✅ ¡Genial! Hacemos entregas en tu zona. Costo de envío: $5,000";
+        localStorage.setItem("userAddress", address);
+
+        // Auto-redirigir al menú después de validar
+        setTimeout(() => {
+          window.location.href = "menu.html";
+        }, 1500);
+      }, 1000);
+    }
+
+    // Permitir validar con Enter
+    document
+      .getElementById("addressInput")
+      ?.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          validateAddress();
         }
       });
 
-      // Mobile Menu Toggle
-      const mobileMenuBtn = document.getElementById("mobileMenuBtn");
-      const navbarMenu = document.getElementById("navbarMenu");
+    // Quick Add to Cart
+    function quickAdd(productId) {
+      // Obtener el producto del DOM o de datos mock
+      const productData = {
+        id: productId,
+        name: `Producto ${productId}`,
+        price: 25000,
+        image:
+          "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
+        description: "Producto delicioso",
+        cartId: Date.now(),
+      };
 
-      if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener("click", function () {
-          navbarMenu.classList.toggle("active");
-          // Cambiar icono
-          this.textContent = navbarMenu.classList.contains("active")
-            ? "✕"
-            : "☰";
+      // Agregar al carrito usando CartManager
+      if (window.cart) {
+        window.cart.addItem(productData, 1);
+      } else {
+        // Fallback si cart no está disponible
+        showToast("Producto agregado al carrito ✓");
+        const cartCount = parseInt(
+          document.getElementById("cartCount").textContent
+        );
+        document.getElementById("cartCount").textContent = cartCount + 1;
+      }
+    }
+
+    // Toast Notification
+    function showToast(message) {
+      const toast = document.createElement("div");
+      toast.className = "toast";
+      toast.textContent = message;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.remove();
+      }, 3000);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
         });
+    });
+  </script>
+</body>
 
-        // Cerrar menú al hacer clic en un link
-        const menuLinks = navbarMenu.querySelectorAll("a");
-        menuLinks.forEach((link) => {
-          link.addEventListener("click", () => {
-            navbarMenu.classList.remove("active");
-            mobileMenuBtn.textContent = "☰";
-          });
-        });
-      }
-
-      // Address Validation
-      function validateAddress() {
-        const address = document.getElementById("addressInput").value;
-        const message = document.getElementById("addressMessage");
-
-        if (!address) {
-          message.style.color = "#EF476F";
-          message.textContent = "❌ Por favor ingresa una dirección";
-          return;
-        }
-
-        // Simulate API call
-        message.style.color = "#F77F00";
-        message.textContent = "⏳ Validando zona...";
-
-        setTimeout(() => {
-          message.style.color = "#06D6A0";
-          message.textContent =
-            "✅ ¡Genial! Hacemos entregas en tu zona. Costo de envío: $5,000";
-          localStorage.setItem("userAddress", address);
-
-          // Auto-redirigir al menú después de validar
-          setTimeout(() => {
-            window.location.href = "menu.html";
-          }, 1500);
-        }, 1000);
-      }
-
-      // Permitir validar con Enter
-      document
-        .getElementById("addressInput")
-        ?.addEventListener("keypress", function (e) {
-          if (e.key === "Enter") {
-            validateAddress();
-          }
-        });
-
-      // Quick Add to Cart
-      function quickAdd(productId) {
-        // Obtener el producto del DOM o de datos mock
-        const productData = {
-          id: productId,
-          name: `Producto ${productId}`,
-          price: 25000,
-          image:
-            "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400",
-          description: "Producto delicioso",
-          cartId: Date.now(),
-        };
-
-        // Agregar al carrito usando CartManager
-        if (window.cart) {
-          window.cart.addItem(productData, 1);
-        } else {
-          // Fallback si cart no está disponible
-          showToast("Producto agregado al carrito ✓");
-          const cartCount = parseInt(
-            document.getElementById("cartCount").textContent
-          );
-          document.getElementById("cartCount").textContent = cartCount + 1;
-        }
-      }
-
-      // Toast Notification
-      function showToast(message) {
-        const toast = document.createElement("div");
-        toast.className = "toast";
-        toast.textContent = message;
-        document.body.appendChild(toast);
-
-        setTimeout(() => {
-          toast.remove();
-        }, 3000);
-      }
-    </script>
-  </body>
 </html>

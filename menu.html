@@ -12,143 +12,128 @@
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <style>
-        .customization-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            justify-content: center;
-            align-items: center;
-            z-index: 10000;
-            overflow-y: auto;
-            padding: 2rem;
+        /* --- ESTILOS PARA LA CUADRÍCULA DE PRODUCTOS --- */
+
+        /* 1. Contenedor de la cuadrícula */
+        #productsGrid {
+            display: grid;
+            gap: 1.5rem;
+            /* Móvil: 2 columnas */
+            grid-template-columns: repeat(2, 1fr);
         }
 
-        .customization-modal.active {
+        /* Tableta: 3 columnas */
+        @media (min-width: 768px) {
+            #productsGrid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Escritorio: 6 columnas */
+        @media (min-width: 1200px) {
+            #productsGrid {
+                grid-template-columns: repeat(6, 1fr);
+            }
+        }
+
+        /* 2. Estructura de la tarjeta de producto */
+        .card.product-card {
             display: flex;
+            flex-direction: column;
+            height: 100%;
+            /* Clave para que todas las tarjetas en una fila tengan la misma altura */
         }
 
-        .modal-content {
-            background: var(--bg-card);
-            border-radius: var(--border-radius-lg);
-            max-width: 800px;
+        .card.product-card .card-img {
+            height: 180px;
+            /* Altura fija para la imagen */
             width: 100%;
-            max-height: 90vh;
-            overflow-y: auto;
+            object-fit: cover;
             position: relative;
         }
 
-        .modal-header {
-            padding: 2rem;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            background: var(--bg-card);
-            z-index: 10;
-        }
-
-        .modal-body {
-            padding: 2rem;
-        }
-
-        .modal-footer {
-            padding: 1.5rem 2rem;
-            border-top: 1px solid var(--border-color);
-            position: sticky;
-            bottom: 0;
-            background: var(--bg-card);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .close-modal {
+        .product-indicators {
             position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: var(--bg-secondary);
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
+            top: 0.75rem;
+            left: 0.75rem;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .close-modal:hover {
-            background: var(--danger);
+        .product-indicators .badge {
+            backdrop-filter: blur(4px);
+            background-color: rgba(0, 0, 0, 0.4);
             color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .size-selector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .size-option {
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius-md);
-            padding: 1rem;
-            text-align: center;
-            cursor: pointer;
-            transition: all var(--transition-base);
-        }
-
-        .size-option:hover {
-            border-color: var(--primary);
-        }
-
-        .size-option.active {
-            border-color: var(--primary);
-            background: rgba(255, 107, 53, 0.1);
-        }
-
-        .customization-option {
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius-md);
-            padding: 1rem;
-            margin-bottom: 0.75rem;
-            transition: all var(--transition-base);
-            cursor: pointer;
-        }
-
-        .customization-option:hover {
-            border-color: var(--primary);
-        }
-
-        .customization-option input[type="checkbox"]:checked~label,
-        .customization-option input[type="radio"]:checked~label {
-            font-weight: 600;
-        }
-
-        .customization-option:has(input:checked) {
-            border-color: var(--primary);
-            background: rgba(255, 107, 53, 0.05);
-        }
-
-        .customization-option label {
+        .card.product-card .card-body {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            margin: 0;
+            flex-direction: column;
+            flex-grow: 1;
+            /* El cuerpo de la tarjeta ocupa el espacio restante */
+            padding: 1rem;
         }
 
-        .price-badge {
-            background: var(--primary);
-            color: white;
-            padding: 0.25rem 0.75rem;
-            border-radius: var(--border-radius-sm);
+        .card.product-card .card-title {
+            font-size: 1.1rem;
+        }
+
+        .card.product-card .card-text {
+            flex-grow: 1;
+            /* Empuja el pie de página hacia abajo */
             font-size: 0.875rem;
-            font-weight: 600;
+            color: var(--text-secondary);
+        }
+
+        /* 3. Pie de página de la tarjeta (precio y botones) */
+        .card-footer {
+            margin-top: auto;
+            /* ¡Importante! Alinea este elemento en la parte inferior */
+            padding-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .product-price {
+            display: block;
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 0.75rem;
+            text-align: center;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .card-actions .btn {
+            flex: 1;
+            /* Los botones comparten el espacio equitativamente */
+        }
+
+        /* --- ESTILOS PARA LA BARRA DE FILTROS --- */
+        .category-filters {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            /* Móvil: Scroll horizontal suave y sin envolver */
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            padding-bottom: 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        @media (min-width: 768px) {
+            .category-filters {
+                justify-content: center;
+                /* Centra los botones horizontalmente */
+                flex-wrap: wrap;
+                overflow-x: visible;
+                padding-bottom: 0;
+            }
         }
     </style>
 </head>
@@ -190,7 +175,7 @@
             <h1 style="margin-bottom: 2rem;">🍕 Nuestro Menú</h1>
 
             <!-- Filters -->
-            <div style="display: flex; gap: 1rem; margin-bottom: 2rem; flex-wrap: wrap;">
+            <div class="category-filters">
                 <button class="btn btn-primary" onclick="filterCategory('all')">Todos</button>
                 <button class="btn btn-outline" onclick="filterCategory('pizzas')">🍕 Pizzas</button>
                 <button class="btn btn-outline" onclick="filterCategory('hamburguesas')">🍔 Hamburguesas</button>
@@ -199,170 +184,25 @@
             </div>
 
             <!-- Products Grid -->
-            <div class="grid grid-cols-4" id="productsGrid"></div>
+            <div id="productsGrid"></div>
         </div>
     </main>
 
     <!-- CUSTOMIZATION MODAL -->
-    <div class="customization-modal" id="customizationModal">
-        <div class="modal-content">
-            <button class="close-modal" onclick="closeModal()">✕</button>
-
-            <div class="modal-header">
-                <h2 id="modalProductName">Pizza Margarita</h2>
-                <p style="color: var(--text-secondary); margin-bottom: 1rem;" id="modalProductDescription"></p>
-                <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">
-                    <span id="modalCurrentPrice">RD$ 750</span>
-                </div>
-            </div>
-
-            <div class="modal-body">
-                <!-- TAMAÑO -->
-                <h3 style="margin-bottom: 1rem;">Tamaño</h3>
-                <div class="size-selector">
-                    <div class="size-option" onclick="selectSize('small', 750, this)">
-                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🍕</div>
-                        <div style="font-weight: 600;">Personal</div>
-                        <div style="font-size: 0.875rem; color: var(--text-muted);">8"</div>
-                        <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 750</div>
-                    </div>
-                    <div class="size-option active" onclick="selectSize('medium', 950, this)">
-                        <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🍕</div>
-                        <div style="font-weight: 600;">Mediana</div>
-                        <div style="font-size: 0.875rem; color: var(--text-muted);">12"</div>
-                        <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 950</div>
-                    </div>
-                    <div class="size-option" onclick="selectSize('large', 1200, this)">
-                        <div style="font-size: 3rem; margin-bottom: 0.5rem;">🍕</div>
-                        <div style="font-weight: 600;">Grande</div>
-                        <div style="font-size: 0.875rem; color: var(--text-muted);">16"</div>
-                        <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 1,200</div>
-                    </div>
-                </div>
-
-                <!-- MASA -->
-                <h3 style="margin-bottom: 1rem;">Tipo de Masa</h3>
-                <div class="customization-option">
-                    <input type="radio" name="masa" id="masa-tradicional" value="tradicional" checked
-                        onchange="updateModalPrice()">
-                    <label for="masa-tradicional">
-                        <span>Tradicional</span>
-                        <span class="price-badge">Incluido</span>
-                    </label>
-                </div>
-                <div class="customization-option">
-                    <input type="radio" name="masa" id="masa-delgada" value="delgada" onchange="updateModalPrice()">
-                    <label for="masa-delgada">
-                        <span>Masa Delgada</span>
-                        <span class="price-badge">Incluido</span>
-                    </label>
-                </div>
-                <div class="customization-option">
-                    <input type="radio" name="masa" id="masa-gruesa" value="gruesa" onchange="updateModalPrice()">
-                    <label for="masa-gruesa">
-                        <span>Masa Gruesa</span>
-                        <span class="price-badge">+ RD$ 80</span>
-                    </label>
-                </div>
-                <div class="customization-option">
-                    <input type="radio" name="masa" id="masa-integral" value="integral" onchange="updateModalPrice()">
-                    <label for="masa-integral">
-                        <span>Integral</span>
-                        <span class="price-badge">+ RD$ 100</span>
-                    </label>
-                </div>
-
-                <!-- EXTRAS -->
-                <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Ingredientes Extra</h3>
-                <div class="customization-option">
-                    <input type="checkbox" id="extra-queso" value="queso" onchange="updateModalPrice()">
-                    <label for="extra-queso">
-                        <span>🧀 Queso Extra</span>
-                        <span class="price-badge">+ RD$ 120</span>
-                    </label>
-                </div>
-                <div class="customization-option">
-                    <input type="checkbox" id="extra-pepperoni" value="pepperoni" onchange="updateModalPrice()">
-                    <label for="extra-pepperoni">
-                        <span>🍖 Pepperoni</span>
-                        <span class="price-badge">+ RD$ 150</span>
-                    </label>
-                </div>
-                <div class="customization-option">
-                    <input type="checkbox" id="extra-champinones" value="champinones" onchange="updateModalPrice()">
-                    <label for="extra-champinones">
-                        <span>🍄 Champiñones</span>
-                        <span class="price-badge">+ RD$ 100</span>
-                    </label>
-                </div>
-                <div class="customization-option">
-                    <input type="checkbox" id="extra-jamon" value="jamon" onchange="updateModalPrice()">
-                    <label for="extra-jamon">
-                        <span>🥓 Jamón</span>
-                        <span class="price-badge">+ RD$ 130</span>
-                    </label>
-                </div>
-
-                <!-- BORDE -->
-                <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Borde</h3>
-                <div class="customization-option">
-                    <input type="radio" name="borde" id="borde-normal" value="normal" checked
-                        onchange="updateModalPrice()">
-                    <label for="borde-normal">
-                        <span>Normal</span>
-                        <span class="price-badge">Incluido</span>
-                    </label>
-                </div>
-                <div class="customization-option">
-                    <input type="radio" name="borde" id="borde-queso" value="queso" onchange="updateModalPrice()">
-                    <label for="borde-queso">
-                        <span>Relleno de Queso</span>
-                        <span class="price-badge">+ RD$ 180</span>
-                    </label>
-                </div>
-                <div class="customization-option">
-                    <input type="radio" name="borde" id="borde-ajo" value="ajo" onchange="updateModalPrice()">
-                    <label for="borde-ajo">
-                        <span>Con Ajo y Hierbas</span>
-                        <span class="price-badge">+ RD$ 60</span>
-                    </label>
-                </div>
-
-                <!-- INSTRUCCIONES -->
-                <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Instrucciones Especiales (Opcional)</h3>
-                <textarea class="form-control" id="modalInstructions" rows="3"
-                    placeholder="Ej: Sin cebolla, bien cocida"></textarea>
-            </div>
-
-            <div class="modal-footer">
-                <div>
-                    <div style="font-size: 0.875rem; color: var(--text-muted);">Total</div>
-                    <div style="font-size: 2rem; font-weight: bold; color: var(--primary);" id="modalTotalPrice">RD$ 950
-                    </div>
-                </div>
-                <button class="btn btn-primary btn-lg" onclick="addCustomizedToCart()">
-                    🛒 Agregar al Carrito
-                </button>
-            </div>
-        </div>
-    </div>
+    <div id="customizationModalPlaceholder"></div>
 
     <!-- FOOTER -->
-    <footer style="background: var(--bg-tertiary); padding: 2rem 0; margin-top: 3rem;">
-        <div class="container text-center">
-            <p>&copy; 2024 PizzaDelivery. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+    <div id="footer-placeholder"></div>
 
     <script src="app.js"></script>
     <script>
         const products = [
-            { id: 1, name: 'Pizza Margarita', description: 'Tomate, mozzarella y albahaca fresca', price: 750, category: 'pizzas', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400', reviews: 234 },
-            { id: 2, name: 'Pizza Pepperoni', description: 'Pepperoni premium y queso extra', price: 720, category: 'pizzas', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400', reviews: 312 },
-            { id: 3, name: 'Burger Clásica', description: 'Carne 100% res, queso cheddar', price: 660, category: 'hamburguesas', image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400', reviews: 189 },
-            { id: 4, name: 'Coca Cola 2L', description: 'Bebida refrescante', price: 240, category: 'bebidas', image: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400', reviews: 98 },
-            { id: 5, name: 'Cheesecake', description: 'Pastel de queso con frutos rojos', price: 450, category: 'postres', image: 'https://images.unsplash.com/photo-1533134242411-f38748fc8e72?w=400', reviews: 167 },
-            { id: 6, name: 'Pizza Hawaiana', description: 'Jamón, piña y queso', price: 780, category: 'pizzas', image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400', reviews: 145 }
+            { id: 1, name: 'Pizza Margarita', description: 'Tomate, mozzarella y albahaca fresca', price: 750, category: 'pizzas', image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400', reviews: 234, available: true, deliveryIncluded: true },
+            { id: 2, name: 'Pizza Pepperoni', description: 'Pepperoni premium y queso extra', price: 720, category: 'pizzas', image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400', reviews: 312, available: true, deliveryIncluded: true },
+            { id: 3, name: 'Burger Clásica', description: 'Carne 100% res, queso cheddar', price: 660, category: 'hamburguesas', image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400', reviews: 189, available: true, deliveryIncluded: false },
+            { id: 4, name: 'Coca Cola 2L', description: 'Bebida refrescante', price: 240, category: 'bebidas', image: 'https://images.unsplash.com/photo-1554866585-cd94860890b7?w=400', reviews: 98, available: true, deliveryIncluded: false },
+            { id: 5, name: 'Cheesecake', description: 'Pastel de queso con frutos rojos', price: 450, category: 'postres', image: 'https://images.unsplash.com/photo-1533134242411-f38748fc8e72?w=400', reviews: 167, available: false, deliveryIncluded: true },
+            { id: 6, name: 'Pizza Hawaiana', description: 'Jamón, piña y queso', price: 780, category: 'pizzas', image: 'https://images.unsplash.com/photo-1565299585323-38d6b0865b47?w=400', reviews: 145, available: true, deliveryIncluded: true }
         ];
 
         let currentCategory = 'all';
@@ -380,18 +220,19 @@
             const filtered = currentCategory === 'all' ? products : products.filter(p => p.category === currentCategory);
 
             grid.innerHTML = filtered.map(product => `
-                <div class="card">
+                <div class="card product-card" data-category="${product.category}" data-available="${product.available}">
+                    <div class="product-indicators">
+                        <span class="badge ${product.available ? 'badge-success' : 'badge-danger'}">${product.available ? 'Disponible' : 'Agotado'}</span>
+                        ${product.deliveryIncluded ? '<span class="badge badge-secondary">Delivery Incluido</span>' : ''}
+                    </div>
                     <img src="${product.image}" alt="${product.name}" class="card-img">
                     <div class="card-body">
                         <h4 class="card-title">${product.name}</h4>
-                        <div style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                            <span style="color: var(--accent);">⭐⭐⭐⭐⭐</span>
-                            <span style="font-size: 0.875rem; color: var(--text-muted);">(${product.reviews})</span>
-                        </div>
                         <p class="card-text">${product.description}</p>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1rem; gap: 0.5rem;">
-                            <span style="font-size: 1.25rem; font-weight: bold; color: var(--primary);">${formatCurrency(product.price)}</span>
-                            <div style="display: flex; gap: 0.5rem;">
+                        
+                        <div class="card-footer">
+                            <span class="product-price">${formatCurrency(product.price)}</span>
+                            <div class="card-actions">
                                 <button class="btn btn-outline btn-sm" onclick="openCustomizationModal(${product.id})">Personalizar</button>
                                 <button class="btn btn-primary btn-sm" onclick="quickAddProduct(${product.id})">Agregar</button>
                             </div>
@@ -431,13 +272,19 @@
             document.getElementById('modalInstructions').value = '';
 
             updateModalPrice();
-            document.getElementById('customizationModal').classList.add('active');
-            document.body.style.overflow = 'hidden';
+            const modal = document.getElementById('customizationModal');
+            if(modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
         function closeModal() {
-            document.getElementById('customizationModal').classList.remove('active');
-            document.body.style.overflow = 'auto';
+            const modal = document.getElementById('customizationModal');
+            if(modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
         }
 
         function selectSize(size, price, element) {
@@ -510,6 +357,16 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             renderProducts();
+            fetch('customization-modal.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('customizationModalPlaceholder').innerHTML = data;
+                });
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-placeholder').innerHTML = data;
+                });
         });
     </script>
 </body>
