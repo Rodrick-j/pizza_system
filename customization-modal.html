@@ -1,0 +1,142 @@
+<!-- ============================================
+     CUSTOMIZATION MODAL - VENTANA DE PERSONALIZACIÓN
+     ============================================ -->
+<div class="customization-modal" id="customizationModal">
+    <div class="modal-content">
+        <button class="close-modal" onclick="closeModal()">✕</button>
+
+        <div class="modal-header">
+            <h2 id="modalProductName">Pizza Margarita</h2>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;" id="modalProductDescription"></p>
+            <div style="font-size: 2rem; font-weight: bold; color: var(--primary);">
+                <span id="modalCurrentPrice">RD$ 750</span>
+            </div>
+        </div>
+
+        <div class="modal-body">
+            <!-- TAMAÑO -->
+            <h3 style="margin-bottom: 1rem;">Tamaño</h3>
+            <div class="size-selector">
+                <div class="size-option" onclick="selectSize('small', 750, this)">
+                    <div style="font-size: 2rem; margin-bottom: 0.5rem;">🍕</div>
+                    <div style="font-weight: 600;">Personal</div>
+                    <div style="font-size: 0.875rem; color: var(--text-muted);">8"</div>
+                    <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 750</div>
+                </div>
+                <div class="size-option active" onclick="selectSize('medium', 950, this)">
+                    <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🍕</div>
+                    <div style="font-weight: 600;">Mediana</div>
+                    <div style="font-size: 0.875rem; color: var(--text-muted);">12"</div>
+                    <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 950</div>
+                </div>
+                <div class="size-option" onclick="selectSize('large', 1200, this)">
+                    <div style="font-size: 3rem; margin-bottom: 0.5rem;">🍕</div>
+                    <div style="font-weight: 600;">Grande</div>
+                    <div style="font-size: 0.875rem; color: var(--text-muted);">16"</div>
+                    <div style="font-weight: bold; color: var(--primary); margin-top: 0.5rem;">RD$ 1,200</div>
+                </div>
+            </div>
+
+            <!-- MASA -->
+            <h3 style="margin-bottom: 1rem;">Tipo de Masa</h3>
+            <div class="customization-option">
+                <input type="radio" name="masa" id="masa-tradicional" value="tradicional" checked onchange="updateModalPrice()">
+                <label for="masa-tradicional">
+                    <span>Tradicional</span>
+                    <span class="price-badge">Incluido</span>
+                </label>
+            </div>
+            <div class="customization-option">
+                <input type="radio" name="masa" id="masa-delgada" value="delgada" onchange="updateModalPrice()">
+                <label for="masa-delgada">
+                    <span>Masa Delgada</span>
+                    <span class="price-badge">Incluido</span>
+                </label>
+            </div>
+            <div class="customization-option">
+                <input type="radio" name="masa" id="masa-gruesa" value="gruesa" onchange="updateModalPrice()">
+                <label for="masa-gruesa">
+                    <span>Masa Gruesa</span>
+                    <span class="price-badge">+ RD$ 80</span>
+                </label>
+            </div>
+            <div class="customization-option">
+                <input type="radio" name="masa" id="masa-integral" value="integral" onchange="updateModalPrice()">
+                <label for="masa-integral">
+                    <span>Integral</span>
+                    <span class="price-badge">+ RD$ 100</span>
+                </label>
+            </div>
+
+            <!-- EXTRAS -->
+            <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Ingredientes Extra</h3>
+            <div class="customization-option">
+                <input type="checkbox" id="extra-queso" value="queso" onchange="updateModalPrice()">
+                <label for="extra-queso">
+                    <span>🧀 Queso Extra</span>
+                    <span class="price-badge">+ RD$ 120</span>
+                </label>
+            </div>
+            <div class="customization-option">
+                <input type="checkbox" id="extra-pepperoni" value="pepperoni" onchange="updateModalPrice()">
+                <label for="extra-pepperoni">
+                    <span>🍖 Pepperoni</span>
+                    <span class="price-badge">+ RD$ 150</span>
+                </label>
+            </div>
+            <div class="customization-option">
+                <input type="checkbox" id="extra-champinones" value="champinones" onchange="updateModalPrice()">
+                <label for="extra-champinones">
+                    <span>🍄 Champiñones</span>
+                    <span class="price-badge">+ RD$ 100</span>
+                </label>
+            </div>
+            <div class="customization-option">
+                <input type="checkbox" id="extra-jamon" value="jamon" onchange="updateModalPrice()">
+                <label for="extra-jamon">
+                    <span>🥓 Jamón</span>
+                    <span class="price-badge">+ RD$ 130</span>
+                </label>
+            </div>
+
+            <!-- BORDE -->
+            <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Borde</h3>
+            <div class="customization-option">
+                <input type="radio" name="borde" id="borde-normal" value="normal" checked onchange="updateModalPrice()">
+                <label for="borde-normal">
+                    <span>Normal</span>
+                    <span class="price-badge">Incluido</span>
+                </label>
+            </div>
+            <div class="customization-option">
+                <input type="radio" name="borde" id="borde-queso" value="queso" onchange="updateModalPrice()">
+                <label for="borde-queso">
+                    <span>Relleno de Queso</span>
+                    <span class="price-badge">+ RD$ 180</span>
+                </label>
+            </div>
+            <div class="customization-option">
+                <input type="radio" name="borde" id="borde-ajo" value="ajo" onchange="updateModalPrice()">
+                <label for="borde-ajo">
+                    <span>Con Ajo y Hierbas</span>
+                    <span class="price-badge">+ RD$ 60</span>
+                </label>
+            </div>
+
+            <!-- INSTRUCCIONES -->
+            <h3 style="margin-bottom: 1rem; margin-top: 2rem;">Instrucciones Especiales (Opcional)</h3>
+            <textarea class="form-control" id="modalInstructions" rows="3" placeholder="Ej: Sin cebolla, bien cocida"></textarea>
+        </div>
+
+        <div class="modal-footer">
+            <div>
+                <div style="font-size: 0.875rem; color: var(--text-muted);">Total</div>
+                <div style="font-size: 2rem; font-weight: bold; color: var(--primary);" id="modalTotalPrice">RD$ 950
+                </div>
+            </div>
+            <button class="btn btn-primary btn-lg" onclick="addCustomizedToCart()">
+                🛒 Agregar al Carrito
+            </button>
+        </div>
+    </div>
+</div>
