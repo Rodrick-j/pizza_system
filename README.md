@@ -1,10 +1,11 @@
-# 🍕 PizzaDelivery - Plataforma de Delivery Completa
+# 🍕 Cosme Parador - Plataforma de Delivery Completa
 
 > Plataforma profesional de entrega de comida a domicilio **superior a McDelivery, UberEats y Rappi**.
 
 ## ✨ Características Principales
 
 ### 🎨 Frontend Moderno
+
 - ✅ Diseño **100% responsive** para móvil, tablet y desktop
 - ✅ **Modo oscuro** integrado con transiciones suaves
 - ✅ Sistema de diseño premium con **glassmorphism** y animaciones
@@ -13,6 +14,7 @@
 - ✅ Microanimaciones y efectos visuales impactantes
 
 ### 🛒 Sistema de Carrito Inteligente
+
 - Agregar productos con personalización
 - Control de cantidades
 - Aplicación de cupones y descuentos
@@ -21,12 +23,14 @@
 - Sugerencias de productos
 
 ### 🏆 Sistema de Recompensas Multinivel
+
 - **Bronce** (0-499 pts): 1x puntos
 - **Plata** (500-1,999 pts): 1.2x puntos + envío gratis >$50k
 - **Oro** (2,000-4,999 pts): 1.5x puntos + envío siempre gratis
 - **Platino** (5,000+ pts): 2x puntos + beneficios VIP
 
 ### ⚡ Funcionalidades Avanzadas
+
 - 🤖 IA recomendadora de productos
 - 📍 Geolocalización avanzada con validación de zonas
 - 🔄 Reordenar en 1 clic
@@ -35,6 +39,7 @@
 - 🔔 Notificaciones push en tiempo real
 
 ### 👨‍💼 Panel de Administración Completo
+
 - 📊 Dashboard con métricas en tiempo real
 - 📦 Gestión de pedidos activos
 - 🍕 CRUD de productos
@@ -97,12 +102,14 @@ python -m http.server 8000
 ### 2. Explorar las funcionalidades
 
 1. **Home (`index.html`)**:
+
    - Validar dirección de entrega
    - Ver categorías de productos
    - Explorar productos destacados
    - Ver promociones activas
 
 2. **Carrito (`carrito.html`)**:
+
    - Gestionar productos
    - Aplicar cupones (ej: `BIENVENIDO15`)
    - Ver resumen de compra
@@ -123,14 +130,14 @@ python -m http.server 8000
 
 ### Colores Principales
 
-| Variable | Color Claro | Color Oscuro |
-|----------|-------------|--------------|
-| `--primary` | #FF6B35 | #FF8C5A |
-| `--secondary` | #004E89 | #1A8FE3 |
-| `--accent` | #F7CB15 | #FFD93D |
-| `--success` | #06D6A0 | #06D6A0 |
-| `--warning` | #F77F00 | #F77F00 |
-| `--danger` | #EF476F | #EF476F |
+| Variable      | Color Claro | Color Oscuro |
+| ------------- | ----------- | ------------ |
+| `--primary`   | #FF6B35     | #FF8C5A      |
+| `--secondary` | #004E89     | #1A8FE3      |
+| `--accent`    | #F7CB15     | #FFD93D      |
+| `--success`   | #06D6A0     | #06D6A0      |
+| `--warning`   | #F77F00     | #F77F00      |
+| `--danger`    | #EF476F     | #EF476F      |
 
 ### Tipografía
 
@@ -177,28 +184,33 @@ Ver detalles completos en: `docs/database-schema.md`
 ## 🌐 API Endpoints
 
 ### Autenticación
+
 - `POST /auth/register` - Registrar usuario
 - `POST /auth/login` - Iniciar sesión
 - `POST /auth/refresh` - Refrescar token
 
 ### Productos
+
 - `GET /products` - Listar productos
 - `GET /products/:id` - Obtener producto
 - `GET /categories` - Listar categorías
 
 ### Carrito
+
 - `POST /cart/add` - Agregar al carrito
 - `GET /cart` - Obtener carrito
 - `PUT /cart/update/:itemId` - Actualizar cantidad
 - `DELETE /cart/remove/:itemId` - Eliminar item
 
 ### Pedidos
+
 - `POST /orders` - Crear pedido
 - `GET /orders` - Historial de pedidos
 - `GET /orders/:id` - Detalle de pedido
 - `GET /orders/:id/tracking` - Tracking en tiempo real
 
 ### Admin
+
 - `GET /admin/stats/dashboard` - Métricas del dashboard
 - `PUT /admin/orders/:id/status` - Actualizar estado
 - CRUD completo para productos, promociones, zonas
@@ -210,12 +222,14 @@ Ver documentación completa en: `docs/api-endpoints.md`
 ## 🔐 Seguridad
 
 ### Frontend
+
 - ✅ Sanitización de inputs
 - ✅ CSP (Content Security Policy)
 - ✅ Validación de formularios
 - ✅ HTTPS obligatorio
 
 ### Backend (Recomendado)
+
 - ✅ JWT con expiración
 - ✅ Bcrypt para contraseñas
 - ✅ Rate limiting
@@ -236,6 +250,7 @@ Ver documentación completa en: `docs/api-endpoints.md`
 ```
 
 ### Características Mobile
+
 - Touch-friendly buttons (44x44px mínimo)
 - Grid responsive que se adapta a 1 columna
 - Navegación optimizada
@@ -246,6 +261,7 @@ Ver documentación completa en: `docs/api-endpoints.md`
 ## 🎯 Próximos Pasos
 
 ### Fase 1: Completar Frontend
+
 - [ ] Menú/Catálogo con filtros
 - [ ] Vista de producto individual
 - [ ] Proceso de checkout completo
@@ -254,6 +270,7 @@ Ver documentación completa en: `docs/api-endpoints.md`
 - [ ] Perfil de usuario
 
 ### Fase 2: Backend
+
 - [ ] Configurar servidor Node.js/Express
 - [ ] Conectar base de datos PostgreSQL
 - [ ] Implementar autenticación JWT
@@ -263,12 +280,14 @@ Ver documentación completa en: `docs/api-endpoints.md`
 - [ ] Configurar WebSocket para tracking real-time
 
 ### Fase 3: Integraciones
+
 - [ ] Configurar Firebase para notificaciones push
 - [ ] Integrar SendGrid para emails
 - [ ] Integrar Twilio para SMS
 - [ ] Configurar Cloudinary para imágenes
 
 ### Fase 4: Deploy
+
 - [ ] Configurar CI/CD con GitHub Actions
 - [ ] Deploy frontend en Vercel/Netlify
 - [ ] Deploy backend en AWS/DigitalOcean
@@ -281,12 +300,14 @@ Ver documentación completa en: `docs/api-endpoints.md`
 ## 🛠️ Tecnologías Utilizadas
 
 ### Frontend
+
 - HTML5 semántico
 - CSS3 (Variables, Grid, Flexbox, Animations)
 - Vanilla JavaScript (ES6+)
 - Google Fonts (Inter, Poppins)
 
 ### Backend Recomendado
+
 - Node.js + Express.js
 - PostgreSQL + Redis
 - JWT Authentication
@@ -311,35 +332,36 @@ Toda la documentación técnica está disponible en el directorio `docs/`:
 
 ## 💡 Características que Superan a la Competencia
 
-| Característica | McDelivery | UberEats | Rappi | **PizzaDelivery** |
-|----------------|-----------|----------|-------|-------------------|
-| Sistema de Recompensas Multinivel | ❌ | ⚠️ Básico | ⚠️ Básico | ✅ 4 niveles |
-| Modo Oscuro | ❌ | ❌ | ❌ | ✅ |
-| PWA Instalable | ⚠️ Limitado | ⚠️ Limitado | ⚠️ Limitado | ✅ |
-| IA Recomendadora | ❌ | ⚠️ Básico | ❌ | ✅ |
-| Reordenar en 1 Clic | ⚠️ Limitado | ❌ | ❌ | ✅ |
-| Promociones Inteligentes | ❌ | ❌ | ❌ | ✅ Clima/Hora |
-| Geolocalización Avanzada | ⚠️ Básico | ⚠️ Básico | ⚠️ Básico | ✅ Polígonos |
-| Dashboard Admin Completo | ⚠️ Limitado | ⚠️ Limitado | ⚠️ Limitado | ✅ Full |
+| Característica                    | McDelivery  | UberEats    | Rappi       | **Cosme Parador** |
+| --------------------------------- | ----------- | ----------- | ----------- | ----------------- |
+| Sistema de Recompensas Multinivel | ❌          | ⚠️ Básico   | ⚠️ Básico   | ✅ 4 niveles      |
+| Modo Oscuro                       | ❌          | ❌          | ❌          | ✅                |
+| PWA Instalable                    | ⚠️ Limitado | ⚠️ Limitado | ⚠️ Limitado | ✅                |
+| IA Recomendadora                  | ❌          | ⚠️ Básico   | ❌          | ✅                |
+| Reordenar en 1 Clic               | ⚠️ Limitado | ❌          | ❌          | ✅                |
+| Promociones Inteligentes          | ❌          | ❌          | ❌          | ✅ Clima/Hora     |
+| Geolocalización Avanzada          | ⚠️ Básico   | ⚠️ Básico   | ⚠️ Básico   | ✅ Polígonos      |
+| Dashboard Admin Completo          | ⚠️ Limitado | ⚠️ Limitado | ⚠️ Limitado | ✅ Full           |
 
 ---
 
 ## 📞 Soporte
 
 Para preguntas o soporte:
-- 📧 Email: hola@pizzadelivery.com
-- 📞 Teléfono: +57 300 123 4567
+
+- 📧 Email: hola@cosmeparador.com
+- 📞 Teléfono: +1809 300-4567
 - 💬 Chat en vivo (próximamente)
 
 ---
 
 ## 📄 Licencia
 
-© 2024 PizzaDelivery. Todos los derechos reservados.
+© 2026 Cosme Parador. Todos los derechos reservados.
 
 ---
 
-## 🎉 ¡Gracias por usar PizzaDelivery!
+## 🎉 ¡Gracias por usar CosmeParador app!
 
 Este proyecto está diseñado para ser la **plataforma de delivery más completa y profesional del mercado**.
 
