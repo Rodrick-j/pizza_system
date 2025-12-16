@@ -106,12 +106,21 @@
 
         .card-actions {
             display: flex;
+            flex-direction: column;
+            /* Botones en columna (uno encima del otro) */
             gap: 0.5rem;
         }
 
         .card-actions .btn {
-            flex: 1;
-            /* Los botones comparten el espacio equitativamente */
+            width: 100%;
+            /* Los botones ocupan todo el ancho */
+        }
+
+        .card-actions .btn-outline {
+            /* Botón de personalizar más grande */
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
         }
 
         /* --- ESTILOS PARA LA BARRA DE FILTROS --- */
@@ -273,7 +282,7 @@
 
             updateModalPrice();
             const modal = document.getElementById('customizationModal');
-            if(modal) {
+            if (modal) {
                 modal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
@@ -281,7 +290,7 @@
 
         function closeModal() {
             const modal = document.getElementById('customizationModal');
-            if(modal) {
+            if (modal) {
                 modal.classList.remove('active');
                 document.body.style.overflow = 'auto';
             }
