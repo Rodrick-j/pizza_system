@@ -570,14 +570,14 @@
               <button class="btn btn-outline" onclick="selectTip(0, this)">
                 No gracias
               </button>
-              <button class="btn btn-outline" onclick="selectTip(2000, this)">
-                $2,000
+              <button class="btn btn-outline" onclick="selectTip(100, this)">
+                $100
               </button>
-              <button class="btn btn-outline" onclick="selectTip(5000, this)">
-                $5,000
+              <button class="btn btn-outline" onclick="selectTip(200, this)">
+                $200
               </button>
-              <button class="btn btn-outline" onclick="selectTip(10000, this)">
-                $10,000
+              <button class="btn btn-outline" onclick="selectTip(500, this)">
+                $500
               </button>
             </div>
 
@@ -832,12 +832,18 @@
     }
 
     function validateForm() {
-      const address = document.getElementById("deliveryAddress").value;
-      const city = document.getElementById("city").value;
+      // Get the selected delivery type
+      const deliveryType = document.querySelector('input[name="deliveryType"]:checked')?.value || 'delivery';
 
-      if (!address || !city) {
-        showToast("❌ Por favor completa la dirección de entrega", "error");
-        return false;
+      // Only validate address if delivery type is "delivery" (not "pickup")
+      if (deliveryType === 'delivery') {
+        const address = document.getElementById("deliveryAddress").value;
+        const city = document.getElementById("city").value;
+
+        if (!address || !city) {
+          showToast("❌ Por favor completa la dirección de entrega", "error");
+          return false;
+        }
       }
 
       if (currentPaymentMethod === "card") {
