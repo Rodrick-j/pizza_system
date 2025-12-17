@@ -211,59 +211,11 @@ const API = {
 };
 
 // ========== DATOS MOCK ==========
-const mockProducts = [
-    {
-        id: 1,
-        name: 'Pizza Margarita',
-        slug: 'pizza-margarita',
-        description: 'Tomate, mozzarella y albahaca fresca',
-        price: 750,
-        category: 'pizzas',
-        image: 'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=400',
-        rating: 4.7,
-        reviews: 234,
-        featured: true
-    },
-    {
-        id: 2,
-        name: 'Burger Clásica',
-        slug: 'burger-clasica',
-        description: 'Carne 100% res, queso cheddar, lechuga',
-        price: 660,
-        category: 'hamburguesas',
-        image: 'https://images.unsplash.com/photo-1571091718767-18b5b1457add?w=400',
-        rating: 4.8,
-        reviews: 189,
-        featured: true
-    },
-    {
-        id: 3,
-        name: 'Pizza Pepperoni',
-        slug: 'pizza-pepperoni',
-        description: 'Pepperoni premium, queso extra',
-        price: 720,
-        originalPrice: 900,
-        category: 'pizzas',
-        image: 'https://images.unsplash.com/photo-1513104890138-7c749659a591?w=400',
-        rating: 4.9,
-        reviews: 312,
-        featured: true,
-        discount: 20
-    },
-    {
-        id: 4,
-        name: 'Combo Familiar',
-        slug: 'combo-familiar',
-        description: '2 pizzas grandes + bebida 2L',
-        price: 1950,
-        category: 'combos',
-        image: 'https://images.unsplash.com/photo-1550547660-d9450f859349?w=400',
-        rating: 4.6,
-        reviews: 98,
-        featured: true,
-        badge: 'Nuevo'
-    }
-];
+// Obtener productos desde el archivo centralizado
+// Si products-data.js no está cargado, usar array vacío como fallback
+const mockProducts = typeof window !== 'undefined' && window.productsData
+    ? window.productsData.products
+    : [];
 
 // Exportar para uso global
 window.cart = cart;

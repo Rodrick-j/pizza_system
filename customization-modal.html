@@ -14,145 +14,305 @@
         </div>
 
         <div class="modal-body" style="padding: 1.5rem;">
-            <!-- Grid de 2 columnas para optimizar espacio -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+            <!-- OPCIONES PARA PIZZAS -->
+            <div id="pizzaOptions" style="display: none;">
+                <!-- Grid de 2 columnas para optimizar espacio -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
 
-                <!-- COLUMNA IZQUIERDA -->
-                <div>
-                    <!-- TAMAÑO -->
-                    <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Tamaño</h3>
-                    <div
-                        style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1.25rem;">
-                        <div class="size-option" onclick="selectSize('small', 750, this)"
-                            style="padding: 0.75rem 0.5rem;">
-                            <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🍕</div>
-                            <div style="font-weight: 600; font-size: 0.9rem;">Personal</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">8"</div>
-                            <div
-                                style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
-                                RD$ 750</div>
+                    <!-- COLUMNA IZQUIERDA -->
+                    <div>
+                        <!-- TAMAÑO -->
+                        <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Tamaño</h3>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1.25rem;">
+                            <div class="size-option" onclick="selectSize('small', 750, this)"
+                                style="padding: 0.75rem 0.5rem;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🍕</div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Personal</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">8"</div>
+                                <div
+                                    style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
+                                    RD$ 750</div>
+                            </div>
+                            <div class="size-option active" onclick="selectSize('medium', 950, this)"
+                                style="padding: 0.75rem 0.5rem;">
+                                <div style="font-size: 1.75rem; margin-bottom: 0.25rem;">🍕</div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Mediana</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">12"</div>
+                                <div
+                                    style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
+                                    RD$ 950</div>
+                            </div>
+                            <div class="size-option" onclick="selectSize('large', 1200, this)"
+                                style="padding: 0.75rem 0.5rem;">
+                                <div style="font-size: 2rem; margin-bottom: 0.25rem;">🍕</div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Grande</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">16"</div>
+                                <div
+                                    style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
+                                    RD$ 1,200</div>
+                            </div>
                         </div>
-                        <div class="size-option active" onclick="selectSize('medium', 950, this)"
-                            style="padding: 0.75rem 0.5rem;">
-                            <div style="font-size: 1.75rem; margin-bottom: 0.25rem;">🍕</div>
-                            <div style="font-weight: 600; font-size: 0.9rem;">Mediana</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">12"</div>
-                            <div
-                                style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
-                                RD$ 950</div>
+
+                        <!-- MASA -->
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Tipo de Masa</h3>
+                        <div
+                            style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.25rem;">
+                            <div class="customization-option" style="margin-bottom: 0;">
+                                <input type="radio" name="masa" id="masa-tradicional" value="tradicional" checked
+                                    onchange="updateModalPrice()">
+                                <label for="masa-tradicional" style="font-size: 0.9rem;">
+                                    <span>Tradicional</span>
+                                    <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                                </label>
+                            </div>
+                            <div class="customization-option" style="margin-bottom: 0;">
+                                <input type="radio" name="masa" id="masa-delgada" value="delgada"
+                                    onchange="updateModalPrice()">
+                                <label for="masa-delgada" style="font-size: 0.9rem;">
+                                    <span>Delgada</span>
+                                    <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                                </label>
+                            </div>
+                            <div class="customization-option" style="margin-bottom: 0;">
+                                <input type="radio" name="masa" id="masa-gruesa" value="gruesa"
+                                    onchange="updateModalPrice()">
+                                <label for="masa-gruesa" style="font-size: 0.9rem;">
+                                    <span>Gruesa</span>
+                                    <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 80</span>
+                                </label>
+                            </div>
+                            <div class="customization-option" style="margin-bottom: 0;">
+                                <input type="radio" name="masa" id="masa-integral" value="integral"
+                                    onchange="updateModalPrice()">
+                                <label for="masa-integral" style="font-size: 0.9rem;">
+                                    <span>Integral</span>
+                                    <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 100</span>
+                                </label>
+                            </div>
                         </div>
-                        <div class="size-option" onclick="selectSize('large', 1200, this)"
-                            style="padding: 0.75rem 0.5rem;">
-                            <div style="font-size: 2rem; margin-bottom: 0.25rem;">🍕</div>
-                            <div style="font-weight: 600; font-size: 0.9rem;">Grande</div>
-                            <div style="font-size: 0.75rem; color: var(--text-muted);">16"</div>
-                            <div
-                                style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
-                                RD$ 1,200</div>
+
+                        <!-- BORDE -->
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Borde</h3>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="radio" name="borde" id="borde-normal" value="normal" checked
+                                onchange="updateModalPrice()">
+                            <label for="borde-normal" style="font-size: 0.9rem;">
+                                <span>Normal</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="radio" name="borde" id="borde-queso" value="queso"
+                                onchange="updateModalPrice()">
+                            <label for="borde-queso" style="font-size: 0.9rem;">
+                                <span>Relleno de Queso</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 180</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 0;">
+                            <input type="radio" name="borde" id="borde-ajo" value="ajo" onchange="updateModalPrice()">
+                            <label for="borde-ajo" style="font-size: 0.9rem;">
+                                <span>Con Ajo y Hierbas</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 60</span>
+                            </label>
                         </div>
                     </div>
 
-                    <!-- MASA -->
-                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Tipo de Masa</h3>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1.25rem;">
-                        <div class="customization-option" style="margin-bottom: 0;">
-                            <input type="radio" name="masa" id="masa-tradicional" value="tradicional" checked
-                                onchange="updateModalPrice()">
-                            <label for="masa-tradicional" style="font-size: 0.9rem;">
-                                <span>Tradicional</span>
-                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                    <!-- COLUMNA DERECHA -->
+                    <div>
+                        <!-- EXTRAS -->
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Ingredientes Extra</h3>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="checkbox" id="extra-queso" value="queso" onchange="updateModalPrice()">
+                            <label for="extra-queso" style="font-size: 0.9rem;">
+                                <span>🧀 Queso Extra</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 120</span>
                             </label>
                         </div>
-                        <div class="customization-option" style="margin-bottom: 0;">
-                            <input type="radio" name="masa" id="masa-delgada" value="delgada"
-                                onchange="updateModalPrice()">
-                            <label for="masa-delgada" style="font-size: 0.9rem;">
-                                <span>Delgada</span>
-                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="checkbox" id="extra-pepperoni" value="pepperoni" onchange="updateModalPrice()">
+                            <label for="extra-pepperoni" style="font-size: 0.9rem;">
+                                <span>🍖 Pepperoni</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 150</span>
                             </label>
                         </div>
-                        <div class="customization-option" style="margin-bottom: 0;">
-                            <input type="radio" name="masa" id="masa-gruesa" value="gruesa"
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="checkbox" id="extra-champinones" value="champinones"
                                 onchange="updateModalPrice()">
-                            <label for="masa-gruesa" style="font-size: 0.9rem;">
-                                <span>Gruesa</span>
-                                <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 80</span>
-                            </label>
-                        </div>
-                        <div class="customization-option" style="margin-bottom: 0;">
-                            <input type="radio" name="masa" id="masa-integral" value="integral"
-                                onchange="updateModalPrice()">
-                            <label for="masa-integral" style="font-size: 0.9rem;">
-                                <span>Integral</span>
+                            <label for="extra-champinones" style="font-size: 0.9rem;">
+                                <span>🍄 Champiñones</span>
                                 <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 100</span>
                             </label>
                         </div>
-                    </div>
+                        <div class="customization-option" style="margin-bottom: 1.25rem;">
+                            <input type="checkbox" id="extra-jamon" value="jamon" onchange="updateModalPrice()">
+                            <label for="extra-jamon" style="font-size: 0.9rem;">
+                                <span>🥓 Jamón</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 130</span>
+                            </label>
+                        </div>
 
-                    <!-- BORDE -->
-                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Borde</h3>
-                    <div class="customization-option" style="margin-bottom: 0.35rem;">
-                        <input type="radio" name="borde" id="borde-normal" value="normal" checked
-                            onchange="updateModalPrice()">
-                        <label for="borde-normal" style="font-size: 0.9rem;">
-                            <span>Normal</span>
-                            <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
-                        </label>
-                    </div>
-                    <div class="customization-option" style="margin-bottom: 0.35rem;">
-                        <input type="radio" name="borde" id="borde-queso" value="queso" onchange="updateModalPrice()">
-                        <label for="borde-queso" style="font-size: 0.9rem;">
-                            <span>Relleno de Queso</span>
-                            <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 180</span>
-                        </label>
-                    </div>
-                    <div class="customization-option" style="margin-bottom: 0;">
-                        <input type="radio" name="borde" id="borde-ajo" value="ajo" onchange="updateModalPrice()">
-                        <label for="borde-ajo" style="font-size: 0.9rem;">
-                            <span>Con Ajo y Hierbas</span>
-                            <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 60</span>
-                        </label>
+                        <!-- INSTRUCCIONES -->
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Instrucciones Especiales</h3>
+                        <textarea class="form-control" id="modalInstructions" rows="4"
+                            style="font-size: 0.9rem; resize: none;"
+                            placeholder="Ej: Sin cebolla, bien cocida"></textarea>
                     </div>
                 </div>
+            </div>
 
-                <!-- COLUMNA DERECHA -->
-                <div>
-                    <!-- EXTRAS -->
-                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Ingredientes Extra</h3>
-                    <div class="customization-option" style="margin-bottom: 0.35rem;">
-                        <input type="checkbox" id="extra-queso" value="queso" onchange="updateModalPrice()">
-                        <label for="extra-queso" style="font-size: 0.9rem;">
-                            <span>🧀 Queso Extra</span>
-                            <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 120</span>
-                        </label>
-                    </div>
-                    <div class="customization-option" style="margin-bottom: 0.35rem;">
-                        <input type="checkbox" id="extra-pepperoni" value="pepperoni" onchange="updateModalPrice()">
-                        <label for="extra-pepperoni" style="font-size: 0.9rem;">
-                            <span>🍖 Pepperoni</span>
-                            <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 150</span>
-                        </label>
-                    </div>
-                    <div class="customization-option" style="margin-bottom: 0.35rem;">
-                        <input type="checkbox" id="extra-champinones" value="champinones" onchange="updateModalPrice()">
-                        <label for="extra-champinones" style="font-size: 0.9rem;">
-                            <span>🍄 Champiñones</span>
-                            <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 100</span>
-                        </label>
-                    </div>
-                    <div class="customization-option" style="margin-bottom: 1.25rem;">
-                        <input type="checkbox" id="extra-jamon" value="jamon" onchange="updateModalPrice()">
-                        <label for="extra-jamon" style="font-size: 0.9rem;">
-                            <span>🥓 Jamón</span>
-                            <span class="price-badge" style="font-size: 0.75rem;">+ RD$ 130</span>
-                        </label>
+            <!-- OPCIONES PARA BEBIDAS -->
+            <div id="drinkOptions" style="display: none;">
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-bottom: 1.5rem;">
+                    <!-- COLUMNA IZQUIERDA -->
+                    <div>
+                        <!-- TAMAÑO DE BEBIDA -->
+                        <h3 style="margin-bottom: 0.75rem; font-size: 1.1rem;">Tamaño</h3>
+                        <div
+                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.5rem; margin-bottom: 1.25rem;">
+                            <div class="size-option" onclick="selectSize('small', 120, this)"
+                                style="padding: 0.75rem 0.5rem;">
+                                <div style="font-size: 1.5rem; margin-bottom: 0.25rem;">🥤</div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">Personal</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">500ml</div>
+                                <div
+                                    style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
+                                    RD$ 120</div>
+                            </div>
+                            <div class="size-option active" onclick="selectSize('medium', 180, this)"
+                                style="padding: 0.75rem 0.5rem;">
+                                <div style="font-size: 1.75rem; margin-bottom: 0.25rem;">🥤</div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">1 Litro</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">1L</div>
+                                <div
+                                    style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
+                                    RD$ 180</div>
+                            </div>
+                            <div class="size-option" onclick="selectSize('large', 240, this)"
+                                style="padding: 0.75rem 0.5rem;">
+                                <div style="font-size: 2rem; margin-bottom: 0.25rem;">🥤</div>
+                                <div style="font-weight: 600; font-size: 0.9rem;">2 Litros</div>
+                                <div style="font-size: 0.75rem; color: var(--text-muted);">2L</div>
+                                <div
+                                    style="font-weight: bold; color: var(--primary); margin-top: 0.25rem; font-size: 0.9rem;">
+                                    RD$ 240</div>
+                            </div>
+                        </div>
+
+                        <!-- TIPO DE BEBIDA -->
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Tipo de Bebida</h3>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="radio" name="tipoBebida" id="bebida-cocacola" value="cocacola" checked
+                                onchange="updateModalPrice()">
+                            <label for="bebida-cocacola" style="font-size: 0.9rem;">
+                                <span>🥤 Coca Cola</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="radio" name="tipoBebida" id="bebida-pepsi" value="pepsi"
+                                onchange="updateModalPrice()">
+                            <label for="bebida-pepsi" style="font-size: 0.9rem;">
+                                <span>🥤 Pepsi</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="radio" name="tipoBebida" id="bebida-sprite" value="sprite"
+                                onchange="updateModalPrice()">
+                            <label for="bebida-sprite" style="font-size: 0.9rem;">
+                                <span>🥤 Sprite/7up</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="radio" name="tipoBebida" id="bebida-fanta" value="fanta"
+                                onchange="updateModalPrice()">
+                            <label for="bebida-fanta" style="font-size: 0.9rem;">
+                                <span>🍊 Fanta</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 0;">
+                            <input type="radio" name="tipoBebida" id="bebida-agua" value="agua"
+                                onchange="updateModalPrice()">
+                            <label for="bebida-agua" style="font-size: 0.9rem;">
+                                <span>💧 Agua</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">- RD$ 30</span>
+                            </label>
+                        </div>
                     </div>
 
-                    <!-- INSTRUCCIONES -->
-                    <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Instrucciones Especiales</h3>
-                    <textarea class="form-control" id="modalInstructions" rows="4"
-                        style="font-size: 0.9rem; resize: none;" placeholder="Ej: Sin cebolla, bien cocida"></textarea>
+                    <!-- COLUMNA DERECHA -->
+                    <div>
+                        <!-- TEMPERATURA -->
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Temperatura</h3>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="radio" name="temperatura" id="temp-fria" value="fria" checked
+                                onchange="updateModalPrice()">
+                            <label for="temp-fria" style="font-size: 0.9rem;">
+                                <span>🧊 Bien Fría (con hielo)</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="radio" name="temperatura" id="temp-normal" value="normal"
+                                onchange="updateModalPrice()">
+                            <label for="temp-normal" style="font-size: 0.9rem;">
+                                <span>🌡️ Temperatura Normal</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Incluido</span>
+                            </label>
+                        </div>
+
+                        <!-- EXTRAS DE BEBIDAS -->
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem; margin-top: 1.25rem;">Extras</h3>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="checkbox" id="extra-vasos" value="vasos" onchange="updateModalPrice()">
+                            <label for="extra-vasos" style="font-size: 0.9rem;">
+                                <span>🥤 Incluir Vasos Desechables</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Gratis</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 0.35rem;">
+                            <input type="checkbox" id="extra-pajitas" value="pajitas" onchange="updateModalPrice()">
+                            <label for="extra-pajitas" style="font-size: 0.9rem;">
+                                <span>🥤 Incluir Pajitas</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Gratis</span>
+                            </label>
+                        </div>
+                        <div class="customization-option" style="margin-bottom: 1.25rem;">
+                            <input type="checkbox" id="extra-servilletas" value="servilletas"
+                                onchange="updateModalPrice()">
+                            <label for="extra-servilletas" style="font-size: 0.9rem;">
+                                <span>📄 Servilletas Extra</span>
+                                <span class="price-badge" style="font-size: 0.75rem;">Gratis</span>
+                            </label>
+                        </div>
+
+                        <!-- INSTRUCCIONES -->
+                        <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Instrucciones Especiales</h3>
+                        <textarea class="form-control" id="modalInstructionsDrink" rows="3"
+                            style="font-size: 0.9rem; resize: none;" placeholder="Ej: Mucho hielo"></textarea>
+                    </div>
                 </div>
+            </div>
+
+            <!-- OPCIONES GENÉRICAS (para otros productos) -->
+            <div id="genericOptions" style="display: none;">
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Cantidad</h3>
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                    <button class="btn btn-outline" onclick="adjustQuantity(-1)"
+                        style="width: 50px; height: 50px; font-size: 1.5rem;">-</button>
+                    <span id="genericQuantity"
+                        style="font-size: 1.5rem; font-weight: bold; min-width: 50px; text-align: center;">1</span>
+                    <button class="btn btn-outline" onclick="adjustQuantity(1)"
+                        style="width: 50px; height: 50px; font-size: 1.5rem;">+</button>
+                </div>
+
+                <h3 style="margin-bottom: 0.5rem; font-size: 1.1rem;">Instrucciones Especiales</h3>
+                <textarea class="form-control" id="modalInstructionsGeneric" rows="4"
+                    style="font-size: 0.9rem; resize: none;" placeholder="Comentarios adicionales"></textarea>
             </div>
         </div>
 
