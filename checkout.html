@@ -189,7 +189,7 @@
                     Entrega en tu dirección
                   </div>
                   <div style="font-size: 0.9rem; font-weight: 600; color: var(--primary); margin-top: 0.5rem">
-                    Costo: RD$ 5,000
+                    Costo: RD$ 100
                   </div>
                 </div>
               </label>
@@ -673,7 +673,7 @@
       let shipping = 0;
 
       if (deliveryType === 'delivery') {
-        shipping = subtotal > 50000 ? 0 : 5000;
+        shipping = subtotal > 100 ? 0 : 100;
       } else {
         // Pickup is always free
         shipping = 0;
